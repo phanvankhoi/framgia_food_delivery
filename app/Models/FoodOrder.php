@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class FoodOrder extends Model
 {
-    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

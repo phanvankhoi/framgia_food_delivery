@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateUsersTable extends Migration
+class UpdateFoodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class UpdateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('gender', ['male', 'female'])->after('name');
-            $table->softDeletes();
+        Schema::table('foods', function (Blueprint $table) {
+            $table->unsignedInteger('discount_id')->after('image');
         });
     }
 
@@ -26,9 +25,8 @@ class UpdateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('gender');
-            $table->dropSoftDeletes();
+        Schema::table('foods', function (Blueprint $table) {
+            $table->dropColumn('discount_id');
         });
     }
 }

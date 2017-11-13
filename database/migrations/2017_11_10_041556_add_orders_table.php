@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateDiscountFoodsTable extends Migration
+class AddOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class UpdateDiscountFoodsTable extends Migration
      */
     public function up()
     {
-        Schema::table('discount_foods', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             $table->softDeletes();
         });
     }
@@ -25,7 +25,7 @@ class UpdateDiscountFoodsTable extends Migration
      */
     public function down()
     {
-        Schema::table('discount_foods', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }
