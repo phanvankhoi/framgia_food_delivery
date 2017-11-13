@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class DiscountFood extends Model
 {
-    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,14 +16,13 @@ class DiscountFood extends Model
         'discount',
         'start_date',
         'end_date',
-        'food_id',
     ];
 
     /**
-    * Get discoutFood's food
+    * Get discoutFood's foods
     */
-    public function food()
+    public function foods()
     {
-        return $this->belongsTo(Food::Class);
+        return $this->hasMny(Food::Class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateReviewsTable extends Migration
+class AddForeignkeyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::table('foods', function (Blueprint $table) {
+            $table->foreign('discount_id')->references('id')->on('discount_foods')->onDelete('cascade');
         });
     }
 
@@ -25,8 +25,8 @@ class UpdateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->dropSoftDeletes();
+        Schema::table('foods', function (Blueprint $table) {
+            $table->dropForeign('foods_discount_id_foreign');
         });
     }
 }

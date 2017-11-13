@@ -39,6 +39,6 @@ class CreateForeignkeyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('foreignkey');
+        Schema::disableForeignKeyConstraints();
     }
 }

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    use SoftDeletes;
-
+  
     /**
      * The attributes that are mass assignable.
      *
@@ -16,6 +15,7 @@ class Food extends Model
     protected $fillable = [
         'name',
         'image',
+        'discount_id'
         'price',
         'status',
         'description',
@@ -40,11 +40,11 @@ class Food extends Model
     }
 
     /**
-    * Get food's discountFoods
+    * Get food's discountFood
     */
-    public function discountFoods()
+    public function discountFood()
     {
-        return $this->hasOne(DiscountFood::Class);
+        return $this->belongsTo(Food::Class);
     }
 
     /**
