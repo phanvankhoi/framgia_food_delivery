@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-  
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,7 +26,7 @@ class Food extends Model
     /**
     * Get food's reviews
     */
-    public function reviews()
+    public function reviews() 
     {
         return $this->hasMany(Review::Class);
     }
