@@ -1,0 +1,25 @@
+{
+  "name": "framgia_food_delivery",
+  "description": "",
+  "main": "",
+  "authors": [
+    "sangnv-ptit <sangnv196@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sangnv-ptit/framgia_food_delivery",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "jQuery-gMap": "https://github.com/marioestrada/jQuery-gMap.git#^2.1.5",
+    "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.2.1"
+  }
+}
