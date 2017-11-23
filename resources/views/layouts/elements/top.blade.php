@@ -6,29 +6,34 @@
                     <div class="menu-bar hidden-md hidden-lg">
                         <img src='http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/menu-bar.png?1509501415605' alt='menu bar' /> 
                     </div>
-                    <div class="logo_top">								
-                        <a href="{{ route('index') }}" class="logo-wrapper ">					
-                        <img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/logo.png?1509501415605" alt="logo ">					
-                        </a>									
+                    <div class="logo_top">                              
+                        <a href="{{ route('index') }}" class="logo-wrapper ">                   
+                        <img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/logo.png?1509501415605" alt="logo ">                    
+                        </a>                                    
                     </div>
                     <div class="header_top_cart left">
                         <div class="search-cart">
                             <div class="use_register hidden-xs">
                                 <span class="use_ico_register"><i class="icon-user icons"></i></span>
                                 <ul class="login_and_register">
-                                    <li class="hidden-sm hidden-xs"><a href="#" data-toggle="modal" data-target="#dangnhap" onclick="dangnhap();return false;" title="Đăng nhập">{{ trans('master.login') }}</a></li>
-                                    <li class="hidden-sm hidden-xs"><a href="#" data-toggle="modal" data-target="#dangky" title="Đăng ký">{{ trans('master.register')}}</a></li>
+                                    @if(Auth::guest())
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="Đăng nhập">{{ trans('master.login') }}</a></li>
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="Đăng ký">{{ trans('master.register')}}</a></li>
+                                    @else
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
+                                    @endif    
                                 </ul>
                             </div>
                             <div class="searching hidden-sm hidden-xs">
                                 <div class="header_search search_form ">
-                                    <form class="input-group search-bar search_form" action="https://pasteur.bizwebvietnam.net/search" method="get" role="search">		
+                                    <form class="input-group search-bar search_form" action="https://pasteur.bizwebvietnam.net/search" method="get" role="search">      
                                         <span class="input-group-btn">
                                         <button class="btn icon-fallback-text">
                                         <i class="icon-magnifier icons"></i>
                                         </button>
                                         </span>
-                                        <input type="search" name="query" value="" placeholder="Tìm kiếm " class="input-group-field st-default-search-input search-text" autocomplete="off">			
+                                        <input type="search" name="query" value="" placeholder="Tìm kiếm " class="input-group-field st-default-search-input search-text" autocomplete="off">            
                                     </form>
                                 </div>
                             </div>

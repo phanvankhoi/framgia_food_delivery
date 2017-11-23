@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <span class="button_drop_down"><img src="{{ asset('img/button_goto.png')}}" alt="Đi tiếp"></span>
+        <span class="button_drop_down"><img src="{{ asset('images/button_goto.png')}}" alt="Đi tiếp"></span>
     </div>
 </section>
 <section class="awe-section-2">

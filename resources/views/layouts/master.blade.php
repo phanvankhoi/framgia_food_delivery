@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>@yield('title')</title>
         <meta name="description" content="My Project">
-        <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon" />
+        <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon" />
         <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css' />
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700&amp;subset=vietnamese" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">     
