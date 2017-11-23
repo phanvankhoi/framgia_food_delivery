@@ -60,5 +60,5 @@ return [
     'edit' => 'Edit',
     'editSuccess' => 'Edit successfully',
     'avatar' => 'Avatar',
-        
+    'allProduct' => 'All Product',    
 ];

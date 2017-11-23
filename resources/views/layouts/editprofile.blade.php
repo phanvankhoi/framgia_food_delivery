@@ -37,9 +37,9 @@
                                         <label>{{ trans('master.username') }}</label>                                       
                                         <input type="text" class="form-control req" name="name" placeholder="Nhập tên của bạn" value="{{ old('name') !== null ? old('name') : $user->name }}" required>
                                         @if ($errors->has('name'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
                                         @endif
                                     </fieldset>
                                 </div>
@@ -48,9 +48,9 @@
                                         <label>{{ trans('master.email') }}</label>                                       
                                         <input type="email" class="form-control" name="email"  placeholder="Nhập email của bạn" value="{{ old('email') !== null ? old('email') : $user->email }}" required>
                                         @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
                                         @endif
                                     </fieldset>
                                 </div>
@@ -59,9 +59,9 @@
                                         <label>{{ trans('master.address') }}</label>
                                         <input type="text" class="form-control req" name="address" placeholder="Nhập địa chỉ của bạn" value="{{ old('address') !== null ? old('address') : $user->address }}">
                                         @if ($errors->has('address'))                                        
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('address') }}</strong>
-                                        </span>
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('address') }}</strong>
+                                            </span>
                                         @endif
                                     </fieldset>
                                 </div>
@@ -70,9 +70,9 @@
                                         <label>{{ trans('master.phone')}}</label>
                                         <input type="text" class="form-control req" name="phone" placeholder="Nhập số điện thoại của bạn" value="{{ old('phone') !== null ? old('phone') : $user->phone }}">
                                         @if ($errors->has('phone'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('phone') }}</strong>
-                                        </span>
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('phone') }}</strong>
+                                            </span>
                                         @endif
                                     </fieldset>
                                 </div>
@@ -81,9 +81,9 @@
                                         <label>{{ trans('master.avatar')}}</label>
                                         <input type="file" name="avatar" style="border: 0px; padding: 0px">
                                         @if ($errors->has('avatar'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('avatar') }}</strong>
-                                        </span>
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('avatar') }}</strong>
+                                            </span>
                                         @endif
                                     </fieldset>
                                 </div>
