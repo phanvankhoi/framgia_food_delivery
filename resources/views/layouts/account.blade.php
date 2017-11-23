@@ -4,16 +4,25 @@
             <div class="fixheight" id="loginx">
                 <div class="wrp_frm">
                     <div class="wrap_form">
-                        <form accept-charset='UTF-8' action='https://pasteur.bizwebvietnam.net/account/login' id='customer_login' method='post'>
-                            <input name='FormType' type='hidden' value='customer_login' />
-                            <input name='utf8' type='hidden' value='true' />
+                        <form accept-charset='UTF-8' action='{{ route('postLogin') }}' id='customer_login' method='post'>
+                            {{ csrf_field() }}
                             <h5 class="title-modal">{{ trans('master.login') }}</h5>
                             <div class="form-signup clearfix from_ip">
-                                <fieldset class="form-group">
-                                    <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control form-control-lg" value="" placeholder="Nhập email" Required>
+                                <fieldset class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control form-control-lg" value="" placeholder="Nhập email" value="{{ old('email') }}" Required>
+                                    @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                    @endif
                                 </fieldset>
-                                <fieldset class="form-group">
+                                <fieldset class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <input type="password" name="password" class="form-control form-control-lg" value="" placeholder="Nhập mật khẩu" Required>
+                                    @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
                                 </fieldset>
                                 <fieldset class="form-group forget">
                                     <a href="#" onclick="showRecoverPasswordForm();return false;">{{ trans('master.forgetPassword') }} ?</a>
@@ -200,3 +209,12 @@
         </div>
     </div>
 </div>
+<?php $error = Session::get('error');  ?>
+
+@if(!empty($error) )
+<script>
+$(document).ready(function() {
+    $("#loginx").style.display='block';
+});
+</script>
+@endif

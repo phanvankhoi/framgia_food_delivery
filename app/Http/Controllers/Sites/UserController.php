@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sites;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EditProfileRequest;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -25,15 +26,9 @@ class UserController extends Controller
         return view('layouts.editprofile', compact('user'));
     }
 
-    public function editProfile(Request $request, $id)
+    public function editProfile(EditProfileRequest $request)
     {   
-        $this->validate($request, [
-            'name' => 'required|max:30',
-            'phone' => 'size:11|unique:users,phone,' . $id,
-            'email' => 'required|email|unique:users,email,' . $id,
-            'address' => 'string|nullable',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);        
+       
         $user = Auth::user();
         $user->name = $request->name;
         $user->email = $request->email; 
