@@ -42,16 +42,16 @@
                             </div>
                             <div class="block-content form-signup">
                                 @if (isset($user->avatar))
-                                <img src="{{ $user->avatar }}" style="width: 200px; height: 180px">
+                                    <img src="{{ $user->avatar }}">
                                 @endif
                                 @if (isset($user->address))
-                                <p><i class="fa fa-home font-some" aria-hidden="true"></i>  <span>{{ trans('master.address') }}: {{ $user->address }}</span></p>
+                                    <p><i class="fa fa-home font-some" aria-hidden="true"></i>  <span>{{ trans('master.address') }}: {{ $user->address }}</span></p>
                                 @endif
                                 @if (isset($user->phone))
-                                <p><i class="fa fa-mobile font-some" aria-hidden="true"></i> <span>{{ trans('master.phone') }}: {{ $user->phone }}</span></p>
+                                    <p><i class="fa fa-mobile font-some" aria-hidden="true"></i> <span>{{ trans('master.phone') }}: {{ $user->phone }}</span></p>
                                 @endif
-                                <p><i class="fa fa-envelope font-some" aria-hidden="true"></i> <span>{{ trans('master.email') }}: {{ $user->email }}</span></p>
-                                <p style="margin-top:20px;"><a href="{{ route('getProfile') }}" class="btn btn-bg full-width btn-lg btn-style article-readmore">{{ trans('master.editAccount') }}</a></p>
+                                    <p><i class="fa fa-envelope font-some" aria-hidden="true"></i> <span>{{ trans('master.email') }}: {{ $user->email }}</span></p>
+                                    <p style="margin-top:20px;"><a href="{{ route('getProfile') }}" class="btn btn-bg full-width btn-lg btn-style article-readmore">{{ trans('master.editAccount') }}</a></p>
                             </div>
                         </div>
                     </div>

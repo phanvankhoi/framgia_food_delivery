@@ -5,7 +5,7 @@ return [
     'name' => 'Framgia Food Delivery',
     'home' => 'Trang chủ',
     'contact' => 'Liên hệ',
-    'menu' => "Thực đơn chọn món",
+    'menu' => 'Thực đơn chọn món',
     'news' => 'Tin tức',
     'special' => 'Món ngon nổi bật',
     'cart' => 'Giỏ hàng',
@@ -60,5 +60,6 @@ return [
     'edit' => 'Sửa',
     'editSuccess' => 'Sửa thông tin thành công',
     'avatar' => 'Ảnh đại diện',
-    
+    'allProduct' => 'Tất cả sản phẩm',
+
 ];

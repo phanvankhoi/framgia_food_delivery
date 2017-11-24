@@ -15,7 +15,7 @@ class Food extends Model
     protected $fillable = [
         'name',
         'image',
-        'discount_id'
+        'discount_id',
         'price',
         'status',
         'description',
@@ -53,5 +53,15 @@ class Food extends Model
     public function category()
     {
         return $this->belongsTo(Category::Class);
+    }
+
+    public function scopeTop($query)
+    {
+        return $query->where('is_top', config('customer.product.is_top'));
+    }
+
+    public function scopePagination($query)
+    {
+        return $query->paginate(config('customer.category.paginate'));
     }
 }

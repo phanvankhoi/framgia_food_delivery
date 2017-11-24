@@ -4,10 +4,36 @@ namespace App\Http\Controllers\Sites;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Food;
 
 class CategoryController extends Controller
-{
-    public function index() {
-    	return view('layouts.category');
+{	
+    public function index() 
+    {	
+    	$foods = Food::all();
+    	$paginator = Food::pagination();
+        $count = $foods->count();
+        $top_foods = Food::top()->get();
+
+     	return view('layouts.category', compact(['count',
+            'foods',
+            'top_foods',
+            'paginator',
+        ]));
+    }
+
+    public function show(Request $request, $id)
+    {
+    	$foods = Food::where('category_id', $id);
+    	$paginator = $foods->pagination();
+        $count = $foods->count();
+        $top_foods = Food::top()->get();
+
+    	return view('layouts.category', compact(['count',
+            'foods',
+            'top_foods',
+            'paginator',
+        ]));
     }
 }
