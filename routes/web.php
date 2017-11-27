@@ -10,13 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'Sites\HomeController@index')->name('index');
-Route::get('/404', 'Sites\HomeController@view404')->name('404');
-Route::get('/contact', 'Sites\HomeController@viewContact')->name('contact');
-Route::resource('/news', 'Sites\NewsController');
-Route::resource('/cart', 'Sites\CartController');
-Route::get('/admin/home', 'Admins\HomeController@index')->name('home');
-Route::resource('/admin/user', 'Admins\UserController');
+Route::get('/admin', 'Admins\HomeController@index')->name('home');
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::resource('user', 'Admins\UserController');
+	Route::resource('category', 'Admins\CategoryController');
+});
 
 Route::resource('cart', 'Sites\CartController');
 

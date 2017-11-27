@@ -118,10 +118,10 @@ class UserController extends Controller
             }
             if ($users->update($input)) {
 
-                return redirect()->route('user.index', [$id])->with('message', trans('messages.update_success'));     
+                return redirect()->route('admin.user.index', [$id])->with('message', trans('messages.update_success'));     
             } else {
 
-                return redirect()->route('user.edit', [$id])->with('message', trans('messages.update_failed'));
+                return redirect()->route('admin.user.edit', [$id])->with('message', trans('messages.update_failed'));
             }
         } else {
             session()->flash('fail', trans('admin_user.not id'));
