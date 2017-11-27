@@ -1,8 +1,6 @@
-@extends("admin.layouts.master")
+@extends('admin.layouts.master')
 @section('title')
-
-    {{ trans('admin_user.List User') }}
-
+    {{ trans('admin_category.List Category') }}
 @endsection
 
 @section('content')
@@ -10,7 +8,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2> {{ trans('admin_user.List User') }} </h2>
+                    <h2> {{ trans('admin_category.List Category') }} </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -22,40 +20,34 @@
                 <div class="x_content">                    
                     <div class="row">
                         <div class="col-sm-6">
-                            <a href="{{ route('admin.user.create') }}" class="btn btn-primary">{{ trans('admin_user.create') }}</a>
+                            <a href="{{ route('admin.category.create') }}" class="btn btn-primary">{{ trans('admin_category.create') }}</a>
                         </div>
                         <div class="col-sm-6">
                             <div id="datatable_filter" class="dataTables_filter">
-                                <label><input type="search" class="form-control input-sm" placeholder="Search" aria-controls="datatable"></label>
+                                <label>
+                                    <input type="search" class="form-control input-sm" placeholder="{{ trans('admin_category.Search') }}" aria-controls="datatable">
+                                </label>
                             </div>
                         </div>
                     </div>                    
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>{{ trans('admin_user.name') }}</th>
-                                <th>{{ trans('admin_user.email') }}</th>
-                                <th>{{ trans('admin_user.avatar') }}</th>
-                                <th>{{ trans('admin_user.phone') }}</th>
-                                <th>{{ trans('admin_user.address') }}</th>
-                                <th>{{ trans('admin_user.role') }}</th>
+                                <th>{{ trans('admin_category.name') }}</th>
+                                <th>{{ trans('admin_category.status') }}</th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
-                        @if ($users)
-                            @foreach($users as $user)
+                        @if ($categories)
+                            @foreach($categories as $category)
                                 <tbody>
                                     <tr>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td><img src="{{ ($user->avatar) }}" width="60" height="60"></td>
-                                        <td>{{ $user->phone }}</td>
-                                        <td>{{ $user->address }}</td>
-                                        <td>{{ $user->role  }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td>{{ $category->status }}</td>
                                         <td>
                                             {!! Form::open([
-                                                'route' => ['admin.user.edit', $user['id']], 
+                                                'route' => ['admin.category.edit', $category['id']], 
                                                 'method' => 'get', 
                                                 'id' => 'form-edit'
                                             ]) !!}
@@ -67,7 +59,7 @@
                                         </td>
                                         <td>
                                             {!! Form::open([
-                                                'route' => ['admin.user.destroy', $user['id']], 
+                                                'route' => ['admin.category.destroy', $category['id']], 
                                                 'method' => 'delete', 
                                                 'id' => 'form-delete'
                                             ]) !!}
@@ -82,7 +74,7 @@
                             @endforeach
                         @endif        
                     </table>
-                    {!! $users->render() !!}
+                    {!! $categories->render() !!}
                     @stack('scripts')
                 </div>
             </div>

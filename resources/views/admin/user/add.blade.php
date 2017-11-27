@@ -18,7 +18,7 @@
                 </div>    
             @endif
             
-            {!! Form::open(['route' => 'user.store', 'method' => 'post', 'enctype' => 'multipart/form-data'], ['class' => 'form-group'])  !!}
+            {!! Form::open(['route' => 'admin.user.store', 'method' => 'post', 'enctype' => 'multipart/form-data'], ['class' => 'form-group'])  !!}
                 <table class="table">
                     <tr>
                         <td>{!! Form::label('name', trans('admin_user.name')) !!}</td>

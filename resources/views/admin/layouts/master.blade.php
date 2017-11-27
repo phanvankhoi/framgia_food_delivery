@@ -42,18 +42,14 @@
                                     </li>
                                     <li><a><i class="fa fa-bars"></i> {{ trans('Category') }} <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="form.html">{{ trans('General Form') }}</a></li>
-                                            <li><a href="form_advanced.html">{{ trans('Advanced Components') }}</a></li>
-                                            <li><a href="form_validation.html">{{ trans('Form Validation') }}</a></li>
-                                            <li><a href="form_wizards.html">{{ trans('Form Wizard') }}</a></li>
-                                            <li><a href="form_upload.html">{{ trans('Form Upload') }}</a></li>
-                                            <li><a href="form_buttons.html">{{ trans('Form Buttons') }}</a></li>
+                                            <li><a href="{{ route('admin.category.create') }}">{{ trans('admin_category.Add Category') }}</a></li>
+                                            <li><a href="{{ route('admin.category.index') }}">{{ trans('admin_category.List Category') }}</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-user-o"></i> {{ trans('User') }} <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="{{ route('user.create') }}">{{ trans('admin_user.Add User') }}</a></li>
-                                            <li><a href="{{ route('user.index') }}">{{ trans('admin_user.List User') }}</a></li>
+                                            <li><a href="{{ route('admin.user.create') }}">{{ trans('admin_user.Add User') }}</a></li>
+                                            <li><a href="{{ route('admin.user.index') }}">{{ trans('admin_user.List User') }}</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-table"></i> {{ trans('Tables') }} <span class="fa fa-chevron-down"></span></a>

@@ -1,4 +1,4 @@
-@extends("admin.layouts.master")
+@extends('admin.layouts.master')
 @section('title')
     {{ trans('Edit') }}
 @endsection
@@ -11,15 +11,15 @@
             @if (count($errors))      
                 <div class="alert alert-danger">
                     <ul>
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}
-                    @endforeach   
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}
+                        @endforeach   
                     </ul>
                 </div>    
             @endif
             
             {!! Form::open(['route' => [
-                'user.update', $users['id']], 
+                'admin.user.update', $users['id']], 
                 'method' => 'PUT', 'enctype' => 'multipart/form-data'],
                 ['class' => 'form-group'
                 ]) !!}
