@@ -16,7 +16,7 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li class="nav-item "><a class="nav-link" href="/menu">{{ trans('master.special') }}</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{{ route('topFood') }}">{{ trans('master.special') }}</a></li>
                         <li class="nav-item "><a class="nav-link" href="{{ route('contact') }}">{{ trans('master.contact') }}</a></li>
                         <li class="nav-item nav-items "><a href="/news" class="nav-link">{{ trans('master.news') }}</a></li>
                     </ul>

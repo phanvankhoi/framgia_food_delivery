@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function index() 
     {	
     	$foods = Food::all();
-    	$paginator = Food::pagination();
+    	$paginator = Food::pagination(config('customer.category.paginate'));
         $count = $foods->count();
         $top_foods = Food::top()->get();
 
@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function show(Request $request, $id)
     {
     	$foods = Food::where('category_id', $id);
-    	$paginator = $foods->pagination();
+    	$paginator = $foods->pagination(config('customer.category.paginate'));
         $count = $foods->count();
         $top_foods = Food::top()->get();
 

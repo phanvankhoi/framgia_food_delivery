@@ -26,7 +26,7 @@ class Food extends Model
     /**
     * Get food's reviews
     */
-    public function reviews() 
+    public function reviews()
     {
         return $this->hasMany(Review::Class);
     }
@@ -60,8 +60,13 @@ class Food extends Model
         return $query->where('is_top', config('customer.product.is_top'));
     }
 
-    public function scopePagination($query)
+    public function scopePagination($query, $id)
     {
-        return $query->paginate(config('customer.category.paginate'));
+        return $query->paginate($id);
+    }
+
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('name', 'like', '%'.$keyword.'%');
     }
 }

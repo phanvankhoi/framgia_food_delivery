@@ -10,16 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', 'Sites\HomeController@index')->name('index');
+Route::get('/404', 'Sites\HomeController@view404')->name('404');
+Route::get('/contact', 'Sites\HomeController@viewContact')->name('contact');
+Route::get('/topfood', 'Sites\HomeController@viewTopFood')->name('topFood');
+Route::post('search', 'Sites\HomeController@searchFood')->name('search');
+Route::resource('/news', 'Sites\NewsController');
+Route::resource('/cart', 'Sites\CartController');
 Route::get('/admin', 'Admins\HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('user', 'Admins\UserController');
-	Route::resource('category', 'Admins\CategoryController');
+	  Route::resource('category', 'Admins\CategoryController');
 });
-
-Route::resource('cart', 'Sites\CartController');
-
-Route::resource('category', 'Sites\CategoryController', ['only' => [
-    'index', 'show'
+Route::resource('category', 'Sites\CategoryController', ['only' => ['index',
+	'show',
 ]]);
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('getLogin');
