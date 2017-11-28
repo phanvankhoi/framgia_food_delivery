@@ -16,52 +16,34 @@
                             <div class="use_register hidden-xs">
                                 <span class="use_ico_register"><i class="icon-user icons"></i></span>
                                 <ul class="login_and_register">
-                                    @if(Auth::guest())
-                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="Đăng nhập">{{ trans('master.login') }}</a></li>
-                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="Đăng ký">{{ trans('master.register')}}</a></li>
+                                    @if (Auth::guest())
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="{{ trans('master.login') }}">{{ trans('master.login') }}</a></li>
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="{{ trans('master.register') }}">{{ trans('master.register')}}</a></li>
                                     @else
-                                        <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>
-                                        <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
+                                            <li class="hidden-sm hidden-xs"><a href="{{ route('home') }}">{{ trans('master.dashboard') }}</a></li> 
+                                            <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>                                        
+                                            <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
                                     @endif    
                                 </ul>
                             </div>
                             <div class="searching hidden-sm hidden-xs">
                                 <div class="header_search search_form ">
-                                    <form class="input-group search-bar search_form" action="https://pasteur.bizwebvietnam.net/search" method="get" role="search">      
+                                    <form class="input-group search-bar search_form" action="" method="post" role="search" id="search-form">   
+                                        {{ csrf_field() }}   
                                         <span class="input-group-btn">
                                         <button class="btn icon-fallback-text">
                                         <i class="icon-magnifier icons"></i>
                                         </button>
                                         </span>
-                                        <input type="search" name="query" value="" placeholder="Tìm kiếm " class="input-group-field st-default-search-input search-text" autocomplete="off">            
+                                        <input type="search" name="query" value="" placeholder="{{ trans('master.search') }} " class="input-group-field st-default-search-input search-text" autocomplete="off" id="search-input">            
                                     </form>
-                                </div>
-                            </div>
-                            <div class="search_mobile showsearchfromtop hidden-md hidden-lg">
-                                <span class="search_button_mobile"><i class="icon-magnifier icons"></i></span>
-                            </div>
-                            <div class="searchboxlager hidden-lg hidden-md">
-                                <div class="searchfromtop">
-                                    <form action="https://pasteur.bizwebvietnam.net/search" method="get" autocomplete="off">
-                                        <input type="text" class="form-control" maxlength="70" name="query" id="search" placeholder="Nhập từ khóa tìm kiếm và ấn enter">                           
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="top-cart-contain f-right hidden-lg hidden-md">
-                                <div class="mini-cart text-xs-center">
-                                    <div class="heading-cart">
-                                        <a href="/cart">
-                                        <span class="background_cart"><i class="icon-bag icons"></i></span>
-                                        <span class="cart_num"><span class="cartCount  count_item_pr"></span></span>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="header_top_cart right">
                         <div class="search_cart">
-                            <span class="phone_header hidden-sm hidden-xs"><i class="fa fa-phone" aria-hidden="true"></i> <a title="Gọi ngay cho Sang">01665109217</a></span>
+                            <span class="phone_header hidden-sm hidden-xs"><i class="fa fa-phone" aria-hidden="true"></i> <a title="CallMe">{{ trans('master.myTelephone') }}</a></span>
                             <div class="top-cart-contain f-right hidden-sm hidden-xs">
                                 <div class="mini-cart text-xs-center">
                                     <div class="heading-cart">
