@@ -18,18 +18,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if (!$request->ajax()){
-            $users = User::paginate(config('setup.user_paginate'));
-            
-            return view('admin.user.index',compact('users'));
-        } else {
-            if ($request->ajax()){
-                $users = User::paginate(config('setup.user_paginate'));   
-
-                return view('admin.user.index',compact('users'));
-            }
+        $users = User::paginate(10);
+        if ($request->ajax()) {
+            return view('admin.user.paginate', compact('users'))->render();
         }
-        
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -40,7 +33,6 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $users = User::all();
-
         return view('admin.user.add', compact('users'));
     }
 
@@ -70,7 +62,6 @@ class UserController extends Controller
             return redirect('admin/user');
         } catch (\Exception $e) {
             session()->flash('fail', trans('admin_user.add_fail'));
-
             return redirect('admin/user/create');
         }
 
@@ -95,8 +86,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $users = User::find($id);
-        
+        $users = User::find($id);        
         return view('admin.user.edit', compact('users'));
     }
 
@@ -117,15 +107,12 @@ class UserController extends Controller
                 $input['avatar'] = config('setup.user_index_avatar').$avatarName;
             }
             if ($users->update($input)) {
-
                 return redirect()->route('admin.user.index', [$id])->with('message', trans('messages.update_success'));     
             } else {
-
                 return redirect()->route('admin.user.edit', [$id])->with('message', trans('messages.update_failed'));
             }
         } else {
             session()->flash('fail', trans('admin_user.not id'));
-
             return redirect('admin.user.index');
         }
         
@@ -146,7 +133,6 @@ class UserController extends Controller
             return redirect('admin/user');
         } else {
             session()->flash('fail', trans('admin_user.not id'));
-
             return redirect('admin/user');
         }
         
