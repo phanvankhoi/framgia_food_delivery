@@ -33,6 +33,9 @@
     "flot.curvedlines": "^1.1.1",
     "DateJS": "https://github.com/abritinthebay/datejs.git#^1.0.0-rc3",
     "jQuery-gMap": "https://github.com/marioestrada/jQuery-gMap.git#^2.1.5",
-    "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.2.1"
+    "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.2.1",
+    "bootstrap-datepicker": "^1.7.1",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "moment": "^2.19.2"
   }
 }

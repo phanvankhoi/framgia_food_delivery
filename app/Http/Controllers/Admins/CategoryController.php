@@ -81,7 +81,7 @@ class CategoryController extends Controller
     {
         if ($categories = Category::find($id)) {
 
-            return redirect('admin.category.edit', compact('categories'));
+            return view('admin.category.edit', compact('categories'));
         } else {
             session()->flash('fail', trans('admin_category.not id'));
 

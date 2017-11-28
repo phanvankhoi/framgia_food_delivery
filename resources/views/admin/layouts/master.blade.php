@@ -13,7 +13,8 @@
         {{ Html::style('/bower/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}
         {{ Html::style('/bower/jqvmap/dist/jqvmap.min.css') }}
         {{ Html::style('/bower/bootstrap-daterangepicker/daterangepicker.css') }}
-        {{ Html::style('/bower//bower_food_delivery/build/css/custom.min.css') }}
+        {{ Html::style('/bower/bower_food_delivery/build/css/custom.min.css') }}
+        {{ Html::style('/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}
     </head>
     <body class="nav-md">
         <div class="container body">
@@ -226,21 +227,21 @@
                 </footer>
             </div>
         </div>
-        {{ Html::script('/bower//bower_food_delivery/vendors/jquery/dist/jquery.js') }}
+        {{ Html::script('/bower/bower_food_delivery/vendors/jquery/dist/jquery.js') }}
         {{ Html::script('/bower/bootstrap/dist/js/bootstrap.min.js') }}
         {{ Html::script('/bower/fastclick/lib/fastclick.js') }}
         {{ Html::script('/bower/nprogress/nprogress.js') }}
-        {{ Html::script('/bower//bower_food_delivery/vendors/Chart.js/dist/Chart.min.js') }}
+        {{ Html::script('/bower/bower_food_delivery/vendors/Chart.js/dist/Chart.min.js') }}
         {{ Html::script('/bower/gauge.js/dist/gauge.min.js') }}
         {{ Html::script('/bower/bootstrap-progressbar/bootstrap-progressbar.min.js') }}
         {{ Html::script('/bower/iCheck/icheck.min.js') }}
-        {{ Html::script('/bower//bower_food_delivery/vendors/skycons/skycons.js') }}
+        {{ Html::script('/bower/bower_food_delivery/vendors/skycons/skycons.js') }}
         {{ Html::script('/bower/Flot/jquery.flot.js') }}
         {{ Html::script('/bower/Flot/jquery.flot.pie.js') }}
         {{ Html::script('/bower/Flot/jquery.flot.time.js') }}
         {{ Html::script('/bower/Flot/jquery.flot.stack.js') }}
         {{ Html::script('/bower/Flot/jquery.flot.resize.js') }}
-        {{ Html::script('/bower//bower_food_delivery/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}
+        {{ Html::script('/bower/bower_food_delivery/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}
         {{ Html::script('/bower/flot-spline/js/jquery.flot.spline.min.js') }}
         {{ Html::script('/bower/flot.curvedlines/curvedLines.js') }}
         {{ Html::script('/bower/DateJS/build/date.js') }}
@@ -249,6 +250,8 @@
         {{ Html::script('/bower/jqvmap/examples/js/jquery.vmap.sampledata.js') }}
         {{ Html::script('/bower/moment/min/moment.min.js') }}
         {{ Html::script('/bower/bootstrap-daterangepicker/daterangepicker.js') }}
-        {{ Html::script('/bower//bower_food_delivery/build/js/custom.min.js') }}
+        {{ Html::script('/bower/bower_food_delivery/build/js/custom.min.js') }}
+        {{ Html::script('/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}
+        @stack('scripts')
   </body>
 </html>
