@@ -20,9 +20,11 @@
                                         <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="{{ trans('master.login') }}">{{ trans('master.login') }}</a></li>
                                         <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="{{ trans('master.register') }}">{{ trans('master.register')}}</a></li>
                                     @else
-                                            <li class="hidden-sm hidden-xs"><a href="{{ route('home') }}">{{ trans('master.dashboard') }}</a></li> 
-                                        <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>                                        
-                                        <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
+                                        @if (Auth::user()->role == 'admin')
+                                            <li class="hidden-sm hidden-xs"><a href="{{ route('admin.home') }}">{{ trans('master.dashboard') }}</a></li>
+                                        @endif                                  
+                                            <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>                                
+                                            <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
                                     @endif    
                                 </ul>
                             </div>

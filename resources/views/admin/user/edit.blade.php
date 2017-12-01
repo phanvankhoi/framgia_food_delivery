@@ -23,15 +23,6 @@
                     {{ session()->get('message') }}
                 </div>
             @endif
-            @if (count($errors))      
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            {{ $error }}
-                        @endforeach   
-                    </ul>
-                </div>    
-            @endif
             
             {!! Form::open(['route' => [
                 'admin.user.update', $users['id']], 
@@ -46,14 +37,6 @@
                 <tr>
                     <td>{!! Form::label('email', trans('admin_user.email')) !!}</td>
                     <td>{!! Form::text('email', $value = $users['email'], ['class' => 'form-control']) !!}</td>
-                </tr>
-                <tr>
-                    <td>{!! Form::label('password', trans('admin_user.password')) !!}</td>
-                    <td>{!! Form::password('password', ['class' => 'form-control']) !!}</td>
-                </tr>
-                <tr>
-                    <td>{!! Form::label('password_confirmation', trans('admin_user.confirm password')) !!}</td>
-                    <td>{!! Form::password('password_confirmation',  ['class' => 'form-control']) !!}</td>
                 </tr>
                 <tr>
                     <td>{!! Form::label('address', trans('admin_user.address')) !!}</td>

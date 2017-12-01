@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserForm;
 use App\Helpers\helper;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 class UserController extends Controller
@@ -54,7 +55,7 @@ class UserController extends Controller
             $users->role = $request->role;
             if ($request->hasFile('avatar')) {
                 $avatarName = helper::importFile($request->file('avatar'), config('setup.user_avatar'));
-                $users->avatar = config('setup.user_index_avatar').$avatarName;
+                $users->avatar = $avatarName;
             }   
             $users->save();
             session()->flash('success', trans('admin_user.add_success'));
@@ -104,7 +105,7 @@ class UserController extends Controller
             $input = $request->all();
             if ($request->hasFile('avatar')) {
                 $avatarName = helper::importFile($request->file('avatar'), config('setup.user_avatar'));
-                $input['avatar'] = config('setup.user_index_avatar').$avatarName;
+                $input['avatar'] = $avatarName;
             }
             if ($users->update($input)) {
                 return redirect()->route('admin.user.index', [$id])->with('message', trans('messages.update_success'));     
@@ -114,8 +115,7 @@ class UserController extends Controller
         } else {
             session()->flash('fail', trans('admin_user.not id'));
             return redirect('admin.user.index');
-        }
-        
+        }        
     }
 
     /**
@@ -134,6 +134,33 @@ class UserController extends Controller
         } else {
             session()->flash('fail', trans('admin_user.not id'));
             return redirect('admin/user');
+        }
+        
+    }
+
+    public function profile()
+    {
+        $users = Auth::user();        
+        return view('admin.user.profile', compact('users'));
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $users = new User;
+        if ($users = $users->find($id)) {
+            $input = $request->all();
+            if ($request->hasFile('avatar')) {
+                $avatarName = helper::importFile($request->file('avatar'), config('setup.user_avatar'));
+                $input['avatar'] = $avatarName;
+            }
+            if ($users->update($input)) {
+                return redirect()->route('admin.user.index', [$id])->with('message', trans('messages.update_success'));     
+            } else {
+                return redirect()->route('admin.user.profile', [$id])->with('message', trans('messages.update_failed'));
+            }
+        } else {
+            session()->flash('fail', trans('admin_user.not id'));
+            return redirect('admin.user.index');
         }
         
     }

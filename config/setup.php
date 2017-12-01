@@ -19,4 +19,5 @@ return [
     'category_show' => 'admin.category.show',
     'category_update' => 'admin.category.update',
     'category_edit' => 'admin.category.edit',
+    'food_image' => 'images/image/',
 ];

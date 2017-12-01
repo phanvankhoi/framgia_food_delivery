@@ -22,16 +22,16 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title">
-                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i><span>Framgia Food Delivery</span></a>
+                            <a href="{{ route('admin.home') }}" class="site_title"><i class="fa fa-paw"></i><span>Framgia Food Delivery</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <div class="profile clearfix">
                             <div class="profile_pic">
-                                <img src="{{ Url('images/img.jpg') }}" alt="..." class="img-circle profile_img">
+                                <img src="{{ asset(config('setup.user_avatar').Auth::user()->avatar) }}" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
                                 <span>{{ trans('welcome') }},</span>
-                                <h2>John Doe</h2>
+                                <h2>{{ Auth::user()->name }}</h2>
                             </div>
                         </div>
                         <br />
@@ -39,7 +39,7 @@
                             <div class="menu_section">
                                 <h3>{{ trans('General') }}</h3>
                                 <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-tachometer"></i> {{ trans('Dashboard') }} <span class="fa fa-chevron-down"></span></a>
+                                    <li><a href="{{ route('admin.home') }}"><i class="fa fa-tachometer"></i> {{ trans('Dashboard') }} <span class="fa fa-chevron-down"></span></a>
                                     </li>
                                     <li><a><i class="fa fa-bars"></i> {{ trans('Category') }} <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -53,10 +53,10 @@
                                             <li><a href="{{ route('admin.user.index') }}">{{ trans('admin_user.List User') }}</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-table"></i> {{ trans('Tables') }} <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-cutlery"></i> {{ trans('Food') }} <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="tables.html">{{ trans('Tables') }}</a></li>
-                                            <li><a href="tables_dynamic.html">{{ trans('Table Dynamic') }}</a></li>
+                                            <li><a href="{{ route('admin.food.index') }}">{{ trans('List Food') }}</a></li>
+                                            <li><a href="{{ route('admin.food.create') }}">{{ trans('Add Food') }}</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-edit"></i> {{ trans('Order') }} <span class="fa fa-chevron-down"></span></a>
@@ -70,8 +70,8 @@
                                     </li>
                                     <li><a><i class="fa fa-clone"></i> {{ trans('Discount') }} <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="fixed_sidebar.html">{{ trans('Fixed Sidebar') }}</a></li>
-                                            <li><a href="fixed_footer.html">{{ trans('Fixed Footer') }}</a></li>
+                                            <li><a href="{{ route('admin.discount.index') }}">{{ trans('Discount') }}</a></li>
+                                            <li><a href="{{ route('admin.discount.create') }}">{{ trans('Add Discount') }}</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -118,7 +118,7 @@
                             </a>
                             <a data-toggle="tooltip" data-placement="top" title="Vietnam" href="#">Vie
                             </a>
-                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}">
                                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                             </a>
                         </div>
@@ -133,11 +133,11 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="{{ Url('images/img.jpg') }}" alt="">John Doe
+                                        <img src="{{ asset(config('setup.user_avatar').Auth::user()->avatar) }}" alt="">{{ Auth::user()->name }}
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="javascript:;"> {{ trans('Profile') }}</a></li>
+                                        <li><a href="{{ route('admin.profile') }}"> {{ trans('Profile') }}</a></li>
                                         <li>
                                             <a href="javascript:;">
                                                 <span class="badge bg-red pull-right">50%</span>
@@ -145,7 +145,7 @@
                                             </a>
                                         </li>
                                         <li><a href="javascript:;">{{ trans('Help') }}</a></li>
-                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> {{ trans('Log Out') }}</a></li>
+                                        <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out pull-right"></i> {{ trans('Log Out') }}</a></li>
                                     </ul>
                                 </li>
                                 <li role="presentation" class="dropdown">
