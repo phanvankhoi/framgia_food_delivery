@@ -11,12 +11,18 @@
 |
 */
 Route::get('/', 'Sites\HomeController@index')->name('index');
-Route::get('/404', 'Sites\HomeController@view404')->name('404');
-Route::get('/contact', 'Sites\HomeController@viewContact')->name('contact');
-Route::get('/topfood', 'Sites\HomeController@viewTopFood')->name('topFood');
+Route::get('404', 'Sites\HomeController@view404')->name('404');
+Route::get('contact', 'Sites\HomeController@viewContact')->name('contact');
+Route::get('topfood', 'Sites\HomeController@viewTopFood')->name('topFood');
 Route::post('search', 'Sites\HomeController@searchFood')->name('search');
-Route::resource('/news', 'Sites\NewsController');
-Route::resource('/cart', 'Sites\CartController');
+Route::resource('news', 'Sites\NewsController');
+Route::group(['prefix' => 'cart'], function () {
+	Route::post('add/{id}', 'Sites\CartController@addToCart')->name('addToCart');
+	Route::get('remove/{id}', 'Sites\CartController@removeFromCart')->name('removeFromCart');
+	Route::post('update/{id}', 'Sites\CartController@updateCart')->name('updateCart');
+	Route::post('check', 'Sites\CartController@checkEmail')->name('checkEmail');
+});
+Route::resource('cart', 'Sites\CartController');
 Route::get('/admin', 'Admins\HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('user', 'Admins\UserController');
@@ -24,9 +30,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('discount', 'Admins\DiscountController');
 });
 Route::resource('category', 'Sites\CategoryController', ['only' => ['index',
-	'show',
+    'show',
 ]]);
-
+Route::get('food/{id}', 'Sites\FoodController@index')->name('food');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('getLogin');
 Route::post('login', 'Auth\LoginController@login')->name('postLogin');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

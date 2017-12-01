@@ -20,7 +20,7 @@ class Food extends Model
         'status',
         'description',
         'is_top',
-        'catogory_id',
+        'category_id',
     ];
 
     /**
