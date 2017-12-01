@@ -31,10 +31,7 @@ class DiscountController extends Controller
     public function create()
     {
         $discounts = DiscountFood::all();
-<<<<<<< HEAD
-=======
 
->>>>>>> 62cdefddef2ec29fcb6aab2bed4594627589e0d8
         return view('admin.discount.add', compact('discounts'));
     }
 
@@ -51,15 +48,10 @@ class DiscountController extends Controller
         $input['start_date'] = date('Y-m-d', strtotime($input['start_date']));
         $input['end_date'] = date('Y-m-d', strtotime($input['end_date']));
         if ($discounts->create($input)) {
-<<<<<<< HEAD
-            return redirect()->route('admin.discount.index')->with('message', trans('admin_discount.create success'));
-        } else {            
-=======
 
             return redirect()->route('admin.discount.index')->with('message', trans('admin_discount.create success'));
-        } else {
-            
->>>>>>> 62cdefddef2ec29fcb6aab2bed4594627589e0d8
+        } else {            
+
             return redirect()->route('admin.discount.create')->with('message', trans('admin_discount.create failed'));
         }
     }

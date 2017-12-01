@@ -58,11 +58,12 @@
                                             <img src="/{{ $food->image }}" alt="{{ $food->name }}">
                                             </a>
                                             <div class="product-action-grid clearfix">
-                                                <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-7913126" enctype="multipart/form-data">
+                                                <form action="{{ route('addToCart', $food->id) }}" method="post" class="variants form-nut-grid" data-id="product-actions-7913126" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
                                                     <div>
-                                                        <a title="xem nhanh" href="/trung-trang-op-la" data-handle="trung-trang-op-la" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
-                                                        <input type="hidden" name="variantId" value="12579870" />
-                                                        <button class="button_wh_40 btn-cart add_to_cart" title="{{ trans('master.addToCart') }}">
+                                                        <a href="{{ route('food', $food->id) }}" data-handle="trung-trang-op-la" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
+                                                        {{-- <input type="hidden" name="variantId" value="12579870" /> --}}
+                                                        <button class="button_wh_40 btn-cart add_to_cart" title="{{ trans('master.addToCart') }}" type="submit">
                                                         <span><i class="fa fa-cart-plus"></i></span>
                                                         </button>
                                                     </div>
@@ -70,7 +71,7 @@
                                             </div>
                                         </div>
                                         <div class="product-info a-left">
-                                            <h3 class="product-name"><a class="text1line" href="/trung-trang-op-la" title="{{ $food->name }}">{{ $food->name }}</a></h3>
+                                            <h3 class="product-name"><a class="text1line" href="{{ route('food', $food->id) }}" title="{{ $food->name }}">{{ $food->name }}</a></h3>
                                             <div class="des_product_item">
                                             	<span class="text1line"> 
                                             		{{ $food->description }}
@@ -108,7 +109,7 @@
                 </aside>
                 <div class="off_today off_today_collection hidden-sm hidden-xs">
                     <div class="title_module not_bg">
-                        <h2><a href="san-pham-noi-bat" title="{{ trans('master.special') }}">{{ trans('master.special') }}</a></h2>
+                        <h2><a href="{{ route('topFood') }}" title="{{ trans('master.special') }}">{{ trans('master.special') }}</a></h2>
                     </div>
                     <div class="sale_off_today">
                         <div class="not-dqowl wrp_list_product">
@@ -117,7 +118,7 @@
                                     <div class="product-box product-list-small">
                                         <div class="product-info a-left">
                                             <div class="info_left a-left">
-                                                <h3 class="product-name"><a class="text1line" href="" title="{{ $top_food->name }}">{{ $top_food->name }}</a></h3>
+                                                <h3 class="product-name"><a class="text1line" href="{{ route('food', $top_food->id) }}" title="{{ $top_food->name }}">{{ $top_food->name }}</a></h3>
                                                 <div class="des_product_item"><span class="text1line"> {{ $top_food->description }}</span></div>
                                             </div>
                                             <div class="info_right a-right">

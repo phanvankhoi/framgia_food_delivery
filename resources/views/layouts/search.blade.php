@@ -5,7 +5,7 @@
             <div class="col-xs-12">
                 <ul class="breadcrumb" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
                     <li class="home">
-                        <a itemprop="url" href="{{ route('index') }}" ><span itemprop="title">{{ trans('master.home') }}</span></a>                     
+                        <a itemprop="url" href="{{ route('index') }}" ><span itemprop="title">{{ trans('master.home') }}</span></a>						
                         <span><i class="fa fa-circle-o" aria-hidden="true"></i></span>
                     </li>
                     <li><strong ><span itemprop="title"> {{ trans('master.allProduct') }}</span></strong></li>
@@ -22,7 +22,7 @@
                     <h1 class="title-head-page hidden-xs title_page_cls margin-top-0">
                         {{ trans('master.allProduct') }}
                     </h1>
-                    <div class="text-sm-left count_text">   
+                    <div class="text-sm-left count_text">	
                         <span class="count_cls ">({{ trans('master.count') }} <span class="ttt">10</span> {{ trans('master.product') }})</span>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     </div>
                     <section class="products-view products-view-grid collection_reponsive">
                         <div class="row">
-                            @foreach ($foods as $food)
+                        	@foreach ($foods as $food)
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 product-grid-col">
                                     <div class="product-box grid_cls">
                                         <div class="product-thumbnail ">
@@ -69,8 +69,8 @@
                                         <div class="product-info a-left">
                                             <h3 class="product-name"><a class="text1line" href="/trung-trang-op-la" title="{{ $food->name }}">{{ $food->name }}</a></h3>
                                             <div class="des_product_item">
-                                                <span class="text1line"> 
-                                                    {{ $food->description }}
+                                            	<span class="text1line"> 
+                                            		{{ $food->description }}
                                                 </span>
                                             </div>
                                             <div class="price-box clearfix">
@@ -91,7 +91,7 @@
                     <div class="aside-content aside-cate-link-cls">
                         <nav class="cate_padding nav-category navbar-toggleable-md">
                             <ul class="nav-ul nav navbar-pills">
-                                @foreach ($categories as $category)
+                            	@foreach ($categories as $category)
                                     <li class="nav-item  lv1">
                                         <a class="nav-link" href="{{ route('category.show', ['id' => $category->id]) }}">{{ $category->name }}
                                         <em>({{ $category->foods->count() }})</em>

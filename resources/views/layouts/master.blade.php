@@ -17,7 +17,7 @@
         {{ Html::style('css/style.scss.css') }}
         {{ Html::style('css/module.scss.css') }}
         {{ Html::style('css/responsive.scss.css') }}
-        {{ Html::script('bower/jquery/dist/jquery.min.js') }}  
+        {{ Html::script('bower/jquery/dist/jquery.min.js') }}
         {{ Html::script('js/search.js') }}
     </head>
     <body>  

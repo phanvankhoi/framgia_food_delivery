@@ -23,6 +23,6 @@ class DiscountFood extends Model
     */
     public function foods()
     {
-        return $this->hasMny(Food::Class);
+        return $this->hasMany(Food::Class);
     }
 }

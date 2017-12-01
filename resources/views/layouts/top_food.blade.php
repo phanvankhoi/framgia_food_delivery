@@ -58,9 +58,9 @@
                                             <img src="/{{ $food->image }}" alt="{{ $food->name }}">
                                             </a>
                                             <div class="product-action-grid clearfix">
-                                                <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-7913126" enctype="multipart/form-data">
+                                                <form action="#" method="post" class="variants form-nut-grid" data-id="product-actions-7913126" enctype="multipart/form-data">
                                                     <div>
-                                                        <a title="xem nhanh" href="/trung-trang-op-la" data-handle="trung-trang-op-la" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
+                                                        <a title="xem nhanh" href="{{ route('food', $food->id) }}" data-handle="trung-trang-op-la" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
                                                         <input type="hidden" name="variantId" value="12579870" />
                                                         <button class="button_wh_40 btn-cart add_to_cart" title="{{ trans('master.addToCart') }}">
                                                         <span><i class="fa fa-cart-plus"></i></span>
@@ -70,7 +70,7 @@
                                             </div>
                                         </div>
                                         <div class="product-info a-left">
-                                            <h3 class="product-name"><a class="text1line" href="/trung-trang-op-la" title="{{ $food->name }}">{{ $food->name }}</a></h3>
+                                            <h3 class="product-name"><a class="text1line" href="{{ route('food', $food->id) }}" title="{{ $food->name }}">{{ $food->name }}</a></h3>
                                             <div class="des_product_item">
                                             	<span class="text1line"> 
                                             		{{ $food->description }}
