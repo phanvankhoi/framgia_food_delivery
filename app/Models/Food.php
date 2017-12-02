@@ -57,7 +57,8 @@ class Food extends Model
 
     public function scopeTop($query)
     {
-        return $query->where('is_top', config('customer.product.is_top'));
+        return $query->where('is_top', config('customer.product.is_top'))->inRandomOrder()
+            ->limit(config('customer.product.limit_qty'));
     }
 
     public function scopePagination($query, $id)
@@ -65,8 +66,13 @@ class Food extends Model
         return $query->paginate($id);
     }
 
-    public function scopeSearch($query, $keyword)
+    public function scopeSearchByName($query, $keyword)
     {
         return $query->where('name', 'like', '%'.$keyword.'%');
+    }
+
+    public function scopeSearchByPrice($query, $keyword)
+    {
+        return $query->where('price', '<=', $keyword);
     }
 }

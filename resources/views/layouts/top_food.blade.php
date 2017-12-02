@@ -13,6 +13,9 @@
                     </li>
                     <li><strong ><span itemprop="title"> {{ trans('master.allTopProduct') }}</span></strong></li>
                 </ul>
+                @if (session()->has('message'))
+                    <div class="alert alert-success">{{ Session::get('message') }}</div>
+                @endif
             </div>
         </div>
     </div>
@@ -50,7 +53,7 @@
                     </div>
                     <section class="products-view products-view-grid collection_reponsive">
                         <div class="row">
-                        	@foreach ($paginator as $food)
+                        	@foreach ($paginate as $food)
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 product-grid-col">
                                     <div class="product-box grid_cls">
                                         <div class="product-thumbnail ">
@@ -58,10 +61,10 @@
                                             <img src="/{{ $food->image }}" alt="{{ $food->name }}">
                                             </a>
                                             <div class="product-action-grid clearfix">
-                                                <form action="#" method="post" class="variants form-nut-grid" data-id="product-actions-7913126" enctype="multipart/form-data">
+                                                <form action="{{ route('addToCart', $food->id) }}" method="post" class="variants form-nut-grid" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
                                                     <div>
-                                                        <a title="xem nhanh" href="{{ route('food', $food->id) }}" data-handle="trung-trang-op-la" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
-                                                        <input type="hidden" name="variantId" value="12579870" />
+                                                        <a title="xem nhanh" href="{{ route('food', $food->id) }}"  class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
                                                         <button class="button_wh_40 btn-cart add_to_cart" title="{{ trans('master.addToCart') }}">
                                                         <span><i class="fa fa-cart-plus"></i></span>
                                                         </button>
@@ -73,7 +76,7 @@
                                             <h3 class="product-name"><a class="text1line" href="{{ route('food', $food->id) }}" title="{{ $food->name }}">{{ $food->name }}</a></h3>
                                             <div class="des_product_item">
                                             	<span class="text1line"> 
-                                            		{{ $food->description }}
+                                            		{{ str_limit($food->description, 100) }}
                                                 </span>
                                             </div>
                                             <div class="price-box clearfix">
@@ -83,7 +86,7 @@
                                     </div>
                                 </div>
                             @endforeach
-                        {!! $paginator->links() !!}
+                        {!! $paginate->links() !!}
                     </section>
                 </div>
             </section>

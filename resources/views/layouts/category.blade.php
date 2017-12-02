@@ -13,6 +13,9 @@
                     </li>
                     <li><strong ><span itemprop="title"> {{ trans('master.allProduct') }}</span></strong></li>
                 </ul>
+                @if (session()->has('message'))
+                    <div class="alert alert-success">{{ Session::get('message') }}</div>
+                @endif
             </div>
         </div>
     </div>
@@ -50,7 +53,7 @@
                     </div>
                     <section class="products-view products-view-grid collection_reponsive">
                         <div class="row">
-                        	@foreach ($paginator as $food)
+                        	@foreach ($paginate as $food)
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 product-grid-col">
                                     <div class="product-box grid_cls">
                                         <div class="product-thumbnail ">
@@ -62,7 +65,6 @@
                                                     {{ csrf_field() }}
                                                     <div>
                                                         <a href="{{ route('food', $food->id) }}" data-handle="trung-trang-op-la" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
-                                                        {{-- <input type="hidden" name="variantId" value="12579870" /> --}}
                                                         <button class="button_wh_40 btn-cart add_to_cart" title="{{ trans('master.addToCart') }}" type="submit">
                                                         <span><i class="fa fa-cart-plus"></i></span>
                                                         </button>
@@ -74,7 +76,7 @@
                                             <h3 class="product-name"><a class="text1line" href="{{ route('food', $food->id) }}" title="{{ $food->name }}">{{ $food->name }}</a></h3>
                                             <div class="des_product_item">
                                             	<span class="text1line"> 
-                                            		{{ $food->description }}
+                                            		{{ str_limit($food->description, 100) }}
                                                 </span>
                                             </div>
                                             <div class="price-box clearfix">
@@ -84,7 +86,7 @@
                                     </div>
                                 </div>
                             @endforeach
-                        {!! $paginator->links() !!}
+                        {!! $paginate->links() !!}
                     </section>
                 </div>
             </section>
@@ -119,7 +121,7 @@
                                         <div class="product-info a-left">
                                             <div class="info_left a-left">
                                                 <h3 class="product-name"><a class="text1line" href="{{ route('food', $top_food->id) }}" title="{{ $top_food->name }}">{{ $top_food->name }}</a></h3>
-                                                <div class="des_product_item"><span class="text1line"> {{ $top_food->description }}</span></div>
+                                                <div class="des_product_item"><span class="text1line"> {{ str_limit($top_food->description, 50) }}</span></div>
                                             </div>
                                             <div class="info_right a-right">
                                                 <div class="price-box clearfix">

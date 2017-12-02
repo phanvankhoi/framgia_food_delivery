@@ -13,6 +13,9 @@
                     </li>
                     <li><strong itemprop="title">{{ trans('master.cart') }}</strong></li>
                 </ul>
+                @if (session()->has('message'))
+                    <div class="alert alert-success">{{ Session::get('message') }}</div>
+                @endif
             </div>
         </div>
     </div>
@@ -33,7 +36,7 @@
                     <div class="bg-scroll">
                         <div class="cart-thead">
                             <div class="text-left" style="width: 8%"><span>{{ trans('master.delete') }}</span></div>
-                            <div class="text-left" style="width: 35%"><span>{{ trans('master.product') }}</span></div>
+                            <div class="a-center" style="width: 35%"><span>{{ trans('master.product') }}</span></div>
                             <div style="width: 20%" class="a-center"><span class="nobr">{{ trans('master.price') }}</span></div>
                             <div style="width: 14%" class="a-center">{{ trans('master.quantity') }}</div>
                             <div style="width: 20%" class="a-center">{{ trans('master.subtotal') }}</div>
@@ -46,7 +49,7 @@
                                     <div class="content_ content_s" style="width: 20%">
                                         <h3 class="product-name"> <a class="text2line" href="{{ route('food', $item->id) }}">{{ $item->name }}</a> </h3>
                                     </div>
-                                    <div style="width: 20%" class="a-center"><span class="item-price"> <span class="price bold-price">{{ number_format($item->price) }}₫</span></span></div>
+                                    <div style="width: 20%" class="a-center"><span class="item-price"> <span class="price bold-price">{{ number_format($item->price) }}{{ trans('master.unit') }}</span></span></div>
                                     <div style="width: 14%" class="a-center">
                                         <form method="post" action="{{ route('updateCart', $item->rowId) }}">
                                             {{ csrf_field() }}
@@ -61,7 +64,12 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="btn_bottom"><a href="{{ route('category.index') }}" title="{{ trans('master.continueShop') }}"><span>{{ trans('master.continueShop') }}</span></a></div>
+                        <div class="btn_bottom">
+                            <a href="{{ route('category.index') }}" title="{{ trans('master.shop') }}"><span>{{ trans('master.shop') }}</span></a>
+                        </div>
+                        <div class="btn_bottom">
+                            <a href="{{ route('destroyCart') }}" title="{{ trans('master.destroyCart') }}"><span>{{ trans('master.destroyCart') }}</span></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 cart-collaterals cart_submit row">
@@ -75,32 +83,38 @@
                                     </div>
                                     <div class="wrap_checkprice">
                                         <div class="li_table">
-                                            <span class="li-left">{{ trans('master.total') }}</span>
+                                            <span class="li-left">{{ trans('master.total') }}:</span>
                                             <span class="li-right totals_price price">{{ $total }}{{ trans('master.unit') }}</span>
                                         </div>
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.email') }}</span>
                                             <span class="li-right totals_price price pink">
-                                                <input type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
-                                                <input type="email" class="form-control " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="{{ $user->email }}" name="email" placeholder="{{ trans('master.email') }}" id="email" required style="width: 180px; margin-top: 5px">
+                                                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::check() ? $user->id : 0 }}">
+                                                <input type="email" class="form-control " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="{{ Auth::check() ? $user->email : '' }}" name="email" placeholder="{{ trans('master.email') }}" id="email" required>
                                             </span>
                                         </div>
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.username') }}</span>
                                             <span class="li-right totals_price price pink">
-                                                <input type="text" class="form-control " value="{{ $user->name }}" name="name" placeholder="{{ trans('master.username') }}" id="name" required style="width: 180px; margin-top: 5px">
+                                                <input type="text" class="form-control " value="{{ Auth::check() ? $user->name : '' }}" name="name" placeholder="{{ trans('master.username') }}" id="name" required>
                                             </span>
                                         </div>
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.address') }}</span>
                                             <span class="li-right totals_price price pink">
-                                                <input type="text" class="form-control " value="{{ $user->address }}" name="address" placeholder="{{ trans('master.address') }}" id="address" required style="width: 180px; margin-top: 5px">
+                                                <input type="text" class="form-control " value="{{ Auth::check() ? $user->address : '' }}" name="address" placeholder="{{ trans('master.address') }}" id="address" required>
                                             </span>
                                         </div>
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.phone') }}</span>
                                             <span class="li-right totals_price price pink">
-                                                <input type="text" class="form-control " value="{{ $user->phone }}" name="phone" placeholder="{{ trans('master.phone') }}" id="phone" required style="width: 180px; margin-top: 5px">
+                                                <input type="text" class="form-control " value="{{ Auth::check() ? $user->phone : '' }}" name="phone" placeholder="{{ trans('master.phone') }}" id="phone" required>
+                                            </span>
+                                        </div>
+                                        <div class="li_table">
+                                            <span class="li-left">{{ trans('master.description') }}</span>
+                                            <span class="li-right totals_price price pink">
+                                                <input type="text" class="form-control " value="{{ old('description') }}" name="description" placeholder="{{ trans('master.description') }}" id="description" required>
                                             </span>
                                         </div>
                                     </div>
@@ -114,7 +128,7 @@
                         <div class="contat_fone">
                             <a class="ctc" href="tel:0912775468">
                                 <p>{{ trans('master.hotline') }}</p>
-                                <span>{{ trans('myPhone') }}</span>
+                                <span>{{ trans('master.myTelephone') }}</span>
                             </a>
                         </div>
                     </div>

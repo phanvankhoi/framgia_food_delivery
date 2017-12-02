@@ -761,8 +761,6 @@ label.error {
 
 .rte img {
     max-width: 100%;
-    height: auto !important;
-    width: auto !important
 }
 
 .rte table {
@@ -4898,4 +4896,9 @@ body {
 
 .awe-section-9 {
     margin-bottom: 0
+}
+
+.li_table input {
+    width: 180px;
+    margin-top: 5px;
 }

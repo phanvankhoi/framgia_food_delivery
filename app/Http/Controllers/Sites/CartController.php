@@ -28,7 +28,10 @@ class CartController extends Controller
     public function addToCart(Request $request, $id) 
     {
         $food = Food::find($id);
-        Cart::add($food->id, $food->name, 1, $food->price, ['image' => $food->image]);
+        if (isset($request->quantity)) $quantity = $request->quantity;
+        else $quantity = config('customer.product.default_qty');
+        Cart::add($food->id, $food->name, $quantity, $food->price, ['image' => $food->image]);
+        session()->flash('message', $food->name . ' has been added to cart');
 
         return back();
     }
@@ -85,6 +88,11 @@ class CartController extends Controller
 
     public function store(Request $request)
     {   
+        if(Cart::count() == 0) {
+            session()->flash('message', 'Empty Cart');
+            
+            return back();
+        }
         $user_id = $request->user_id;
         if ($user_id != 0) {
             $user = User::find($user_id);           
@@ -101,10 +109,10 @@ class CartController extends Controller
 
         $order = new Order();
         $order->user_id = $user->id;
-        $order->description = '';
+        $order->description = $request->description;
         $order->date = date('Y-m-d H:i:s');
         $order->total_price = Cart::total();
-        $order->status = 1;
+        $order->status = config('customer.order.default_status');
         $order->save();
 
         foreach(Cart::content() as $item) {
@@ -115,7 +123,14 @@ class CartController extends Controller
             $food_order->price = $item->subtotal;
             $food_order->save(); 
         }
-        return Cart::content();
+        session()->flash('message', 'Order Successfully');
+        return back();
+    }
+
+    public function destroyCart()
+    {
+        Cart::destroy();
+        return back();
     }
 
     public function show()
