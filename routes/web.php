@@ -15,7 +15,7 @@ Route::get('404', 'Sites\HomeController@view404')->name('404');
 Route::get('contact', 'Sites\HomeController@viewContact')->name('contact');
 Route::get('topfood', 'Sites\HomeController@viewTopFood')->name('topFood');
 Route::post('search', 'Sites\HomeController@searchFood')->name('search');
-Route::resource('news', 'Sites\NewsController');
+Route::resource('/news', 'Sites\NewsController');
 Route::group(['prefix' => 'cart'], function () {
 	Route::post('add/{id}', 'Sites\CartController@addToCart')->name('addToCart');
 	Route::get('remove/{id}', 'Sites\CartController@removeFromCart')->name('removeFromCart');
@@ -28,6 +28,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('user', 'Admins\UserController');
     Route::resource('category', 'Admins\CategoryController');
     Route::resource('discount', 'Admins\DiscountController');
+});
+Route::resource('/cart', 'Sites\CartController');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admins', 'middleware' => 'AdminMiddleware'], function () {
+    Route::resource('/user', 'UserController');
+    Route::resource('/category', 'CategoryController');
+    Route::resource('/discount', 'DiscountController');
+    Route::resource('/food', 'FoodController');
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/profile', 'UserController@profile')->name('profile');
 });
 Route::resource('category', 'Sites\CategoryController', ['only' => ['index',
     'show',
