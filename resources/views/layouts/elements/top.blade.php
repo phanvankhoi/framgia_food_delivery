@@ -17,14 +17,14 @@
                                 <span class="use_ico_register"><i class="icon-user icons"></i></span>
                                 <ul class="login_and_register">
                                     @if (Auth::guest())
-                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="{{ trans('master.login') }}">{{ trans('master.login') }}</a></li>
-                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="{{ trans('master.register') }}">{{ trans('master.register')}}</a></li>
+                                    <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="{{ trans('master.login') }}">{{ trans('master.login') }}</a></li>
+                                    <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="{{ trans('master.register') }}">{{ trans('master.register')}}</a></li>
                                     @else
-                                        @if (Auth::user()->role == 'admin')
-                                            <li class="hidden-sm hidden-xs"><a href="{{ route('admin.home') }}">{{ trans('master.dashboard') }}</a></li>
-                                        @endif                                  
-                                            <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>                                
-                                            <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
+                                    @if (Auth::user()->role == config('customer.user.default_role'))
+                                    <li class="hidden-sm hidden-xs"><a href="{{ route('admin.home') }}">{{ trans('master.dashboard') }}</a></li>
+                                    @endif                                  
+                                    <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>
+                                    <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
                                     @endif    
                                 </ul>
                             </div>
@@ -49,36 +49,39 @@
                             <div class="top-cart-contain f-right hidden-sm hidden-xs">
                                 <div class="mini-cart text-xs-center">
                                     <div class="heading-cart">
-                                        <a href="/cart">
+                                        <a href="{{ route('cart.index') }}">
                                         <span class="background_cart"><i class="icon-bag icons"></i></span>
-                                        <span class="cart_num" id="cart-total"><span class="cartCount count_item_pr"></span></span>
+                                        <span class="cart_num" id="cart-total"><span class="cartCount count_item_pr">{{ Cart::count() }}</span></span>
                                         </a>
                                     </div>
                                     <div class="top-cart-content">
                                         <ul id="cart-sidebar" class="mini-products-list count_li">
-                                            <li class="list-item">
-                                                <ul></ul>
-                                            </li>
-                                            <li class="action">
-                                                <ul>
-                                                    <li class="li-fix-1">
-                                                        <div class="top-subtotal">
-                                                            {{ trans('master.total') }}
-                                                            <span class="price"></span>
+                                            @if (Cart::count() != 0)
+                                            <ul class="list-item-cart">
+                                                @foreach (Cart::content() as $item)
+                                                <li class="item">
+                                                    <div class="wrap_item">
+                                                        <a class="product-image" href="{{ route('food', $item->id) }}" title="{{ $item->name }}"><img alt="{{ $item->name }}" src="{{ $item->options->image }}" width="80"></a>
+                                                        <div class="detail-item">
+                                                            <div class="product-details">
+                                                                <span class="quaty item_quanty_count">{{ $item->qty }}</span><a href="{{ route('removeFromCart', $item->rowId) }}" title="{{ trans('master.delete') }}" class="remove-item-cart fa fa-times">&nbsp;</a>
+                                                                <p class="product-name"> <a class="text2line" href="{{ route('food', $item->id) }}" title="{{ $item->name }}">{{ $item->name }}</a></p>
+                                                            </div>
+                                                            <div class="product-details-bottom"><span class="price">{{ $item->price }}{{ trans('master.unit') }}</span></div>
                                                         </div>
-                                                    </li>
-                                                    <li class="li-fix-2" style="">
-                                                        <div class="actions">
-                                                            <a href="https://pasteur.bizwebvietnam.net/cart" class="btn btn-primary">
-                                                            <span>{{ trans('master.cart') }}</span>
-                                                            </a>
-                                                            <a href="https://pasteur.bizwebvietnam.net/checkout" class="btn btn-checkout btn-gray">
-                                                            <span>{{ trans('master.checkout') }}</span>
-                                                            </a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                                    </div>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                            <div class="wrap_total">
+                                                <div class="top-subtotal">{{ trans('master.total') }}: <span class="price">{{ Cart::total() }}{{ trans('master.unit') }}</span></div>
+                                            </div>
+                                            <div class="wrap_button">
+                                                <div class="actions"><a href="{{ route('cart.index') }}" class="btn btn-gray btn-checkout"><span>{{ trans('master.confirmOrder') }}</span></a></div>
+                                            </div>
+                                            @else
+                                            <div class="list-item-cart">{{ trans('master.emptyCart') }}</div>
+                                            @endif
                                         </ul>
                                     </div>
                                 </div>

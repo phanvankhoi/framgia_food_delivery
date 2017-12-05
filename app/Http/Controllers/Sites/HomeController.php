@@ -27,10 +27,10 @@ class HomeController extends Controller
     public function viewTopFood()
     {
         $foods = Food::top();
-        $paginator = $foods->pagination(config('customer.top_food.paginate'));
+        $paginate = $foods->pagination(config('customer.top_food.paginate'));
         $count = $foods->count();
 
-        return view('layouts.top_food', compact(['paginator',
+        return view('layouts.top_food', compact(['paginate',
             'count',
         ]));
     }
@@ -40,7 +40,13 @@ class HomeController extends Controller
         if (!$request->ajax()) {
             return view('layouts.404');
         }
-        $foods = Food::search($request->keyword)->get();
+        $keyword = doubleval($request->keyword);
+        if ($keyword == 0) {
+            $foods = Food::searchByName($request->keyword)->get();            
+        }
+        else {
+            $foods = Food::searchByPrice($keyword)->get();
+        }
 
         return view('layouts.search', compact('foods'))->render();
     }

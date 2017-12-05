@@ -16,18 +16,13 @@ Route::get('contact', 'Sites\HomeController@viewContact')->name('contact');
 Route::get('topfood', 'Sites\HomeController@viewTopFood')->name('topFood');
 Route::post('search', 'Sites\HomeController@searchFood')->name('search');
 Route::resource('/news', 'Sites\NewsController');
+Route::resource('review', 'Sites\ReviewController');
 Route::group(['prefix' => 'cart'], function () {
 	Route::post('add/{id}', 'Sites\CartController@addToCart')->name('addToCart');
 	Route::get('remove/{id}', 'Sites\CartController@removeFromCart')->name('removeFromCart');
 	Route::post('update/{id}', 'Sites\CartController@updateCart')->name('updateCart');
 	Route::post('check', 'Sites\CartController@checkEmail')->name('checkEmail');
-});
-Route::resource('cart', 'Sites\CartController');
-Route::get('/admin', 'Admins\HomeController@index')->name('home');
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::resource('user', 'Admins\UserController');
-    Route::resource('category', 'Admins\CategoryController');
-    Route::resource('discount', 'Admins\DiscountController');
+    Route::get('destroy', 'Sites\CartController@destroyCart')->name('destroyCart');
 });
 Route::resource('/cart', 'Sites\CartController');
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admins', 'middleware' => 'AdminMiddleware'], function () {
@@ -60,3 +55,4 @@ Route::prefix('password')->group(function () {
 Route::get('profile', 'Sites\UserController@showProfile')->name('showProfile');
 Route::get('editprofile', 'Sites\UserController@getProfile')->name('getProfile');
 Route::post('editprofile', 'Sites\UserController@editProfile')->name('editProfile');
+Route::get('order', 'Sites\OrderController@index')->name('order');

@@ -23,7 +23,7 @@
                         {{ trans('master.allProduct') }}
                     </h1>
                     <div class="text-sm-left count_text">	
-                        <span class="count_cls ">({{ trans('master.count') }} <span class="ttt">10</span> {{ trans('master.product') }})</span>
+                        <span class="count_cls ">({{ trans('master.count') }} <span class="ttt">{{ $foods->count() }}</span> {{ trans('master.product') }})</span>
                     </div>
                 </div>
                 <div class="category-products products">

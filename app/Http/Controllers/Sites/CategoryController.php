@@ -12,28 +12,28 @@ class CategoryController extends Controller
     public function index() 
     {	
     	$foods = Food::all();
-    	$paginator = Food::pagination(config('customer.category.paginate'));
+    	$paginate = Food::pagination(config('customer.category.paginate'));
         $count = $foods->count();
         $top_foods = Food::top()->get();
 
      	return view('layouts.category', compact(['count',
             'foods',
             'top_foods',
-            'paginator',
+            'paginate',
         ]));
     }
 
     public function show(Request $request, $id)
     {
     	$foods = Food::where('category_id', $id);
-    	$paginator = $foods->pagination(config('customer.category.paginate'));
+    	$paginate = $foods->pagination(config('customer.category.paginate'));
         $count = $foods->count();
-        $top_foods = Food::top()->get();
+        $top_foods = $foods->top()->get();
 
     	return view('layouts.category', compact(['count',
             'foods',
             'top_foods',
-            'paginator',
+            'paginate',
         ]));
     }
 }
