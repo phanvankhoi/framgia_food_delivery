@@ -19,6 +19,7 @@ class CartController extends Controller
         $total = Cart::total();
         if(Auth::check()) {
             $user = Auth::user();
+
             return view('layouts.cart', compact(['cart_items', 'total', 'user']));
         }
         
@@ -30,6 +31,9 @@ class CartController extends Controller
         $food = Food::find($id);
         if (isset($request->quantity)) $quantity = $request->quantity;
         else $quantity = config('customer.product.default_qty');
+        if ($food->discount_id != config('customer.product.no_discount')) {
+            $food->price = $food->price * $food->discountFood->discount / config('customer.percentage');
+        }
         Cart::add($food->id, $food->name, $quantity, $food->price, ['image' => $food->image]);
         session()->flash('message', $food->name . ' has been added to cart');
 
@@ -105,7 +109,12 @@ class CartController extends Controller
         $user->name = $request->name;
         $user->address = $request->address;
         $user->phone = $request->phone;
-        $user->save(); 
+        $check_user = $user->save();
+        if(!$check_user) {
+            session()->flash('error', trans('master.failtOrder'));
+            
+            return back();
+        } 
 
         $order = new Order();
         $order->user_id = $user->id;
@@ -113,23 +122,31 @@ class CartController extends Controller
         $order->date = date('Y-m-d H:i:s');
         $order->total_price = Cart::total();
         $order->status = config('customer.order.default_status');
-        $order->save();
-
-        foreach(Cart::content() as $item) {
-            $food_order = new FoodOrder();
-            $food_order->order_id = $order->id;
-            $food_order->food_id = $item->id;
-            $food_order->quantity = $item->qty;
-            $food_order->price = $item->subtotal;
-            $food_order->save(); 
+        $check_order = $order->save();
+        if(!$check_order) {
+            session()->flash('error', trans('master.failtOrder'));
+            
+            return back();
         }
+        DB::transaction(function () {
+            foreach (Cart::content() as $item) {
+                $food_order = new FoodOrder();
+                $food_order->order_id = $order->id;
+                $food_order->food_id = $item->id;
+                $food_order->quantity = $item->qty;
+                $food_order->price = $item->subtotal;
+                $food_order->save();
+            }
+        });
         session()->flash('message', 'Order Successfully');
+
         return back();
     }
 
     public function destroyCart()
     {
         Cart::destroy();
+        
         return back();
     }
 

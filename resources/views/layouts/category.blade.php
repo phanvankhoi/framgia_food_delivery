@@ -58,13 +58,13 @@
                                     <div class="product-box grid_cls">
                                         <div class="product-thumbnail ">
                                             <a class="image_link " href="#" title="{{ $food->name }}">
-                                            <img src="/{{ $food->image }}" alt="{{ $food->name }}">
+                                            <img src="{{ $food->image }}" alt="{{ $food->name }}">
                                             </a>
                                             <div class="product-action-grid clearfix">
                                                 <form action="{{ route('addToCart', $food->id) }}" method="post" class="variants form-nut-grid" data-id="product-actions-7913126" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div>
-                                                        <a href="{{ route('food', $food->id) }}" data-handle="trung-trang-op-la" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
+                                                        <a href="{{ route('food', $food->id) }}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search-plus"></i></a>
                                                         <button class="button_wh_40 btn-cart add_to_cart" title="{{ trans('master.addToCart') }}" type="submit">
                                                         <span><i class="fa fa-cart-plus"></i></span>
                                                         </button>
@@ -76,11 +76,16 @@
                                             <h3 class="product-name"><a class="text1line" href="{{ route('food', $food->id) }}" title="{{ $food->name }}">{{ $food->name }}</a></h3>
                                             <div class="des_product_item">
                                             	<span class="text1line"> 
-                                            		{{ str_limit($food->description, 100) }}
+                                            		{{ str_limit($food->description, config('customer.product.description')) }}
                                                 </span>
                                             </div>
                                             <div class="price-box clearfix">
-                                                <span class="price product-price">{{ $food->price }}{{ trans('master.unit') }}</span>
+                                                <span class="price product-price">{{ \App\Helpers\Helper::showPrice($food) }}{{ trans('master.unit') }}</span>
+                                                @if ($food->discountFood->id != config('customer.product.no_discount')
+                                                        && $food->discountFood->end_date 
+                                                            >= \Illuminate\Support\Carbon::now())                                               
+                                                    <span class="price product-price-old">{{ $food->price }}{{ trans('master.unit') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +130,11 @@
                                             </div>
                                             <div class="info_right a-right">
                                                 <div class="price-box clearfix">
-                                                    <span class="price product-price">{{ $top_food->price }} {{ trans('master.unit') }}</span>
+                                                    <span class="price product-price">{{ \App\Helpers\Helper::showPrice($food) }}{{ trans('master.unit') }}</span>
+                                                    @if ($food->discount_id != config('customer.product.no_discount'))
+                                                    
+                                                        <span class="price product-price-old">{{ $food->price }}{{ trans('master.unit') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

@@ -83,5 +83,8 @@ return [
     'done' => 'Done',
     'content' => 'Content',
     'failToReview' => 'Fail to create review',
-    'successToReview' => 'Review Successfully'
+    'successToReview' => 'Review Successfully',
+    'discount' => 'Discount Food',
+    'failOrder' => 'Order Fail',
+    
 ];

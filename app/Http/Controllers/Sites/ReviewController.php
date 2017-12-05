@@ -96,7 +96,7 @@ class ReviewController extends Controller
             session()->flash('success', trans('master.successToReview'));
 
             return back();
-        } catch {
+        } catch (Exception $e) {
             session()->flash('error', trans('master.failToReview'));
 
             return back();

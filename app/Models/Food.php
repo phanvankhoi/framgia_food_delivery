@@ -75,4 +75,9 @@ class Food extends Model
     {
         return $query->where('price', '<=', $keyword);
     }
+
+    public function getImageAttribute($image)
+    {
+        return config('customer.link.food') . $image;
+    }
 }

@@ -39,9 +39,13 @@ class UserController extends Controller
             $fileName = time() . '.' . $file->getClientOriginalExtension('avatar');            
             $file->move(config('customer.link.avatar'), $fileName);
             File::delete($user->avatar);
-            $user->avatar = config('customer.link.avatar').$fileName;
+            $user->avatar = $fileName;
         }
-        $user->save();
+        $check = $user->save();
+        if (!$check) {
+            session()->flash('error', trans('master.failOrder'));
+            return back();
+        }
 
         return redirect()->route('showProfile');
     }

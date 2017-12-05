@@ -3,6 +3,7 @@
 return [
     'link' => [
         'avatar' => 'images/avatar/',
+        'food' => 'images/image/',
     ],
 
     'category' => [
@@ -17,6 +18,8 @@ return [
     	'is_top' => 1,
         'limit_qty' => 4,
         'default_qty' => 1,
+        'no_discount' => 1,
+        'description' => 100,
     ],
     'order' => [
         'default_status' => 1,
@@ -28,4 +31,5 @@ return [
     'user' => [
         'default_role' => 'admin',
     ],
+    'percentage' => 100,
 ];

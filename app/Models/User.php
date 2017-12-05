@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::Class);
     }
+
+    public function getAvatarAttribute($avatar)
+    {
+        return config('customer.link.avatar') . $avatar;
+    }
 }

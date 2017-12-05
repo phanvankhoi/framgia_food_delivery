@@ -41,7 +41,7 @@ $factory->define(App\Models\Food::class, function (Faker $faker) {
         'name' => $faker->name,
         'image' => 'images/avatar/1511842686.jpeg',
         'discount_id' => rand(1,10),
-        'price' => rand(1000000,10000000)/100,
+        'price' => rand(1,10) * 10000,
         'status' => 1,
         'description' => $faker->paragraph,
         'is_top' => rand(0,1),

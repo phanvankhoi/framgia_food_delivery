@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col_large_default col-lg-12 col-md-12 col-sm-12 col-xs-12 large-image">
                                     <a  href="#" class="large_image_url checkurl" data-rel="prettyPhoto[product-gallery]">
-                                    <img id="img_01" class="img-responsive " alt="{{ $food->name }}" src="/{{ $food->image }}"/>
+                                    <img id="img_01" class="img-responsive " alt="{{ $food->name }}" src="{{ $food->image }}"/>
                                     </a>
                                 </div>
                             </div>
@@ -43,7 +43,12 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 details-pro">
                             <h1 class="title-product" itemprop="name">{{ $food->name }}</h1>
                             <div class="price-box">
-                                <div class="special-price"><span class="price product-price" >{{ $food->price}}{{ trans('master.unit') }}</span> </div>
+                                <div class="special-price">
+                                    <span class="price product-price" >{{ \App\Helpers\Helper::showPrice($food) }}{{ trans('master.unit') }}</span>
+                                    @if ($food->discount_id != config('customer.product.no_discount'))
+                                        <span class="old-price"><del class="price product-price-old sale" style="display: inline;">{{ $food->price}}{{ trans('master.unit') }}</del> </span>
+                                    @endif
+                                </div>
                             </div>
                             <div class="product-summary product_description margin-bottom-10">
                                 <div class="rte description text3line">
@@ -115,7 +120,7 @@
                             <div id="tab-1" class="tab-content">
                                 <div class="rte">
                                     <p>{{ $food->description }}</p>
-                                    <p style="text-align: center;"><img data-thumb="large" original-height="600" original-width="800" src="/{{ $food->image }}" /></p>
+                                    <p style="text-align: center;"><img data-thumb="large" original-height="600" original-width="800" src="{{ $food->image }}" /></p>
                                 </div>
                             </div>
                             <div id="tab-2" class="tab-content tab-review-c">
