@@ -8,15 +8,7 @@
         <h1>{{ trans('admin_category.add category') }}</h1>
         <div class="">
 
-            @if (count($errors))      
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            {{ $error }}
-                        @endforeach   
-                    </ul>
-                </div>    
-            @endif
+            @include('admin.layouts.common')
             
             {!! Form::open(['route' => 'admin.category.store', 'method' => 'post', 'enctype' => 'multipart/form-data'], ['class' => 'form-group'])  !!}
                 <table class="table">

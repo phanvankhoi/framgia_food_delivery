@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div id="datatable_filter" class="dataTables_filter">
-                                <label><input type="search" class="form-control input-sm" placeholder="Search" aria-controls="datatable"></label>
+                                <label><input type="text" id="search_user" class="form-control input-sm" placeholder="Search" aria-controls="datatable"></label>
                             </div>
                         </div>
                     </div>                    
@@ -47,7 +47,7 @@
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td><img src="{{ ($user->avatar) }}" width="60" height="60"></td>
+                                        <td><img src="{{ asset(config('setup.user_avatar') . $user['avatar']) }}" width="60" height="60"></td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->address }}</td>
                                         <td>{{ $user->role  }}</td>
@@ -78,7 +78,7 @@
                                     </tr>     
                                 @endforeach
                             @endif                           
-                        </tbody>                                   
+                        </tbody>                                
                     </table>
                     {{ $users->links() }}
                 </div>
@@ -88,4 +88,5 @@
 @endsection
 @push('scripts')
     {{ Html::script('js/admin.js') }}
+    {{ Html::script('js/search-ajax.js') }}
 @endpush

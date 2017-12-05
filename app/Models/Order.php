@@ -14,12 +14,16 @@ class Order extends Model
      *
      * @var array
      */
+    protected $table = 'orders';
+
     protected $fillable = [
         'description',
         'date',
         'total_price',
         'user_id',
-        'status'
+        'status',
+        'create_at',
+        'update_at',
     ];
 
     /**

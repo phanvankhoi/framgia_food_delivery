@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::paginate(10);
+        $users = User::paginate(config('setup.user_paginate'));
         if ($request->ajax()) {
             return view('admin.user.paginate', compact('users'))->render();
         }
@@ -160,8 +160,24 @@ class UserController extends Controller
             }
         } else {
             session()->flash('fail', trans('admin_user.not id'));
+
             return redirect('admin.user.index');
+        }        
+    }
+
+    public function search(Request $request)
+    {   
+        try {
+            $name = $request->name;
+            $users = User::where('name', 'like', '%'. $name .'%')
+                ->orWhere('email', 'like', '%'. $name .'%')->get();
+            $html = view('admin.user.search', compact('users'))->render();
+
+            return response($html);
+        } catch (Exception $e) {
+            $response['error'] = true;
+            
+            return response()->json($response);
         }
-        
     }
 }
