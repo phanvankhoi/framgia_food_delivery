@@ -4902,3 +4902,7 @@ body {
     width: 180px;
     margin-top: 5px;
 }
+
+#food-box .grid_cls{
+    height: 400px;
+}

@@ -77,4 +77,11 @@ return [
     'status' => 'Status',
     'order' => 'Order',
     'date' => 'Date',
+    'pending' => 'Pending',
+    'confirm' => 'Confirmed',
+    'delivery' => 'Deliveried',
+    'done' => 'Done',
+    'content' => 'Content',
+    'failToReview' => 'Fail to create review',
+    'successToReview' => 'Review Successfully'
 ];

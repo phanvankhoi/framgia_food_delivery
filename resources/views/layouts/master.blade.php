@@ -31,6 +31,4 @@
 </html>
 {{ Html::script('js/main.js') }}
 {{ Html::script('bower/bootstrap/dist/js/bootstrap.min.js') }}
-{{ Html::script('js/gmap.js') }}
-{{ Html::script('bower/jQuery-gMap/jquery.gmap.min.js') }}
 {{ Html::script('bower/owl.carousel/dist/owl.carousel.min.js') }}

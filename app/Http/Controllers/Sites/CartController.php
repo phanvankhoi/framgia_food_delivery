@@ -90,7 +90,7 @@ class CartController extends Controller
     {   
         if(Cart::count() == 0) {
             session()->flash('message', 'Empty Cart');
-            
+
             return back();
         }
         $user_id = $request->user_id;

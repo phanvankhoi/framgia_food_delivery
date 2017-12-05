@@ -13,7 +13,7 @@ class FoodController extends Controller
     {   
         $food = Food::find($id);
         $reviews = Review::where('food_id', $id)->get();
-        
+
         return view('layouts.food_detail', compact('food', 'reviews'));
     }
 }

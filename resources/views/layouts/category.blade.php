@@ -54,7 +54,7 @@
                     <section class="products-view products-view-grid collection_reponsive">
                         <div class="row">
                         	@foreach ($paginate as $food)
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 product-grid-col">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 product-grid-col" id="food-box">
                                     <div class="product-box grid_cls">
                                         <div class="product-thumbnail ">
                                             <a class="image_link " href="#" title="{{ $food->name }}">

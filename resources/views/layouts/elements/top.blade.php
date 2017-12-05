@@ -17,14 +17,15 @@
                                 <span class="use_ico_register"><i class="icon-user icons"></i></span>
                                 <ul class="login_and_register">
                                     @if (Auth::guest())
-                                    <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="{{ trans('master.login') }}">{{ trans('master.login') }}</a></li>
-                                    <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="{{ trans('master.register') }}">{{ trans('master.register')}}</a></li>
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="{{ trans('master.login') }}">{{ trans('master.login') }}</a></li>
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="{{ trans('master.register') }}">{{ trans('master.register')}}</a></li>
                                     @else
-                                    @if (Auth::user()->role == config('customer.user.default_role'))
-                                    <li class="hidden-sm hidden-xs"><a href="{{ route('admin.home') }}">{{ trans('master.dashboard') }}</a></li>
-                                    @endif                                  
-                                    <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>
-                                    <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
+                                        @if (Auth::user()->role == config('customer.user.default_role'))
+                                            <li class="hidden-sm hidden-xs"><a href="{{ route('admin.home') }}">{{ trans('master.dashboard') }}</a></li>
+                                        @endif                                  
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('order') }}">{{ trans('master.order')}}</a></li>
+                                        <li class="hidden-sm hidden-xs"><a href="{{ route('logout') }}">{{ trans('master.logout')}}</a></li>
                                     @endif    
                                 </ul>
                             </div>

@@ -18,7 +18,7 @@
                     <li>
                 </ul>
                 @if (session()->has('message'))
-                    <div class="alert alert-success">{{ Session::get('message') }}</div>
+                <div class="alert alert-success">{{ Session::get('message') }}</div>
                 @endif
             </div>
         </div>
@@ -88,7 +88,7 @@
                                         <input type="radio" id="starhalf" name="rating" value="1" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                                     </fieldset>
                                     <div class="bpr-form-review-body">
-                                        <textarea maxlength="1500" id="review_body" name="content" rows="5" placeholder="Nội dung"></textarea>
+                                        <textarea maxlength="1500" id="review_body" name="content" rows="5" placeholder="{{ trans('master.content' )}}"></textarea>
                                         <span class="bpr-form-message-error"></span>
                                     </div>
                                 </div>
@@ -108,25 +108,17 @@
                                 <li class="tab-link" data-tab="tab-1">
                                     <h3><span>{{ trans('master.home') }} </span></h3>
                                 </li>
-                                <li class="tab-link" data-tab="tab-2">
-                                    <h3><span>{{ trans('master.home') }} </span></h3>
-                                </li>
-                                <li class="tab-link" data-tab="tab-3" id="tab-review">
+                                <li class="tab-link" data-tab="tab-2" id="tab-review">
                                     <h3><span>{{ trans('master.review') }}</span></h3>
                                 </li>
                             </ul>
-                            <div id="tab-3" class="tab-content">
+                            <div id="tab-1" class="tab-content">
                                 <div class="rte">
                                     <p>{{ $food->description }}</p>
                                     <p style="text-align: center;"><img data-thumb="large" original-height="600" original-width="800" src="/{{ $food->image }}" /></p>
                                 </div>
                             </div>
-                            <div id="tab-2" class="tab-content">
-                                <div class="rte">
-                                    {{ trans('master.home') }}  
-                                </div>
-                            </div>
-                            <div id="tab-1" class="tab-content tab-review-c">
+                            <div id="tab-2" class="tab-content tab-review-c">
                                 <div class="rte">
                                     @if (Auth::check())
                                     <div id="bizweb-product-reviews" class="bizweb-product-reviews">
@@ -154,23 +146,28 @@
                                                                 <span class="bizweb-review-header-byline">{{ $review->user->email }}</span>
                                                                 <div class="rating">
                                                                     @for ($i = 10; $i > $review->rate; $i--)
-                                                                        @if ($i % 2 == 0) 
-                                                                            <input type="radio" value="{{ $i }}" disabled/><label class="full" title="{{ $i }} stars"></label>
-                                                                        @else
-                                                                            <input type="radio" value="{{ $i }}" disabled/><label class="half" title="{{ $i }} stars"></label>
-                                                                        @endif
+                                                                    @if ($i % 2 == 0) 
+                                                                    <input type="radio" value="{{ $i }}" disabled/><label class="full" title="{{ $i }} stars"></label>
+                                                                    @else
+                                                                    <input type="radio" value="{{ $i }}" disabled/><label class="half" title="{{ $i }} stars"></label>
+                                                                    @endif
                                                                     @endfor
                                                                     <input type="radio" value="{{ $review->rate }}" checked disabled /><label class="{{ $review->rate % 2 == 0 ? 'full' : 'half' }}" title="{{ $i }} stars"></label>
                                                                     @for ($i = $review->rate-1; $i > 0; $i--) 
-                                                                        @if ($i % 2 == 0) 
-                                                                            <input type="radio" value="{{ $i }}" disabled/><label class="full" title="{{ $i }} stars"></label>
-                                                                        @else
-                                                                            <input type="radio" value="{{ $i }}" disabled/><label class="half" title="{{ $i }} stars"></label>
-                                                                        @endif
+                                                                    @if ($i % 2 == 0) 
+                                                                    <input type="radio" value="{{ $i }}" disabled/><label class="full" title="{{ $i }} stars"></label>
+                                                                    @else
+                                                                    <input type="radio" value="{{ $i }}" disabled/><label class="half" title="{{ $i }} stars"></label>
+                                                                    @endif
                                                                     @endfor
                                                                 </div>
                                                                 <span class="bizweb-review-header-time">   {{ $review->created_at }}</span>
                                                             </div>
+                                                            @if ($review->user == Auth::user())
+                                                            <div class="bizweb-review-reportreview btn-edit" data-id="{{ $review->id }}">
+                                                                <i aria-hidden="true" class="fa fa-edit"></i>
+                                                            </div>
+                                                            @endif
                                                         </div>
                                                         <div class="bizweb-review-content">
                                                             <p class="bizweb-review-content-body">{{ $review->content }}</p>

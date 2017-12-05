@@ -25,7 +25,7 @@
                 <div class="box-maps">
                     <div class="iFrameMap">
                         <div class="google-map">
-                            <div id="contact_map" class="map"></div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.872290271968!2d105.8071388499183!3d21.03779539277828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab145dccbea5%3A0x5db3c457d7e46fd1!2zNDQyIMSQ4buZaSBD4bqlbiwgQ-G7kW5nIFbhu4ssIEJhIMSQw6xuaCwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1512402595849" width="550" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -45,29 +45,4 @@
         </div>
     </div>
 </section>
-<style>
-    .google-map {width:100%;}
-    .google-map .map {width:100%; height:400px; background:#dedede}
-</style>
-<script type="text/javascript">
-    $(window).bind('load resize scroll', function() {
-        var wDH = $(window).height();
-        var heightContact = $('.contact_main').height();
-        $('.google-map .map').css('min-height', heightContact - 25);
-    });
-    (jQuery)(document).ready(function($) {
-
-        if ($('#contact_map').length) {
-            $('#contact_map').gMap({
-                zoom: 17,
-                scrollwheel: false,
-                maptype: 'TERRAIN',
-                markers: [{
-                    address: '442 Đội Cấn, Ba Đình, Hà Nôi',
-                    html: '_address'
-                }]
-            });
-        }
-    });
-</script>
 @endsection
