@@ -20,6 +20,10 @@ return [
     ],
     'order' => [
         'default_status' => 1,
+        'pending' => 1,
+        'confirmed' => 2,
+        'delivery' => 3,
+        'done' => 4,
     ],
     'user' => [
         'default_role' => 'admin',
