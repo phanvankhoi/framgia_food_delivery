@@ -17,21 +17,7 @@
                     <div class="clearfix"></div>
                 </div>
 
-                @if (session()->has('success'))
-                    <div class="alert alert-success">
-                        {{ session()->get('success') }}
-                    </div>
-                @endif
-                @if (session()->has('fail'))
-                    <div class="alert alert-danger">
-                    {{ session()->get('fail') }}
-                    </div>
-                @endif
-                @if (session()->has('message'))
-                    <div class="alert alert-message">
-                        {{ session()->get('message') }}
-                    </div>
-                @endif
+                @include('admin.layouts.common')
 
                 <div class="x_content">
                     <div class="row">

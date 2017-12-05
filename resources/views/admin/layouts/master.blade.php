@@ -59,13 +59,22 @@
                                             <li><a href="{{ route('admin.food.create') }}">{{ trans('Add Food') }}</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-edit"></i> {{ trans('Order') }} <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-edit"></i> {{ trans('Order') }} <span class="fa fa-chevron-down"></span>
+                                            @if(isset($pendingEventCount))
+                                                <span class="badge bg-green">
+                                                    {{ $pendingEventCount }}
+                                                </span>
+                                            @endif
+                                        </a>
                                         <ul class="nav child_menu">
-                                            <li><a href="chartjs.html">{{ trans('Chart JS') }}</a></li>
-                                            <li><a href="chartjs2.html">{{ trans('Chart JS2') }}</a></li>
-                                            <li><a href="morisjs.html">{{ trans('Moris JS') }}</a></li>
-                                            <li><a href="echarts.html">{{ trans('ECharts') }}</a></li>
-                                            <li><a href="other_charts.html">{{ trans('Other Charts') }}</a></li>
+                                            <li><a href="{{ route('admin.order.index') }}">{{ trans('List Order') }}
+                                                @if(isset($pendingEventCount))
+                                                    <span class="badge bg-green">
+                                                        {{ $pendingEventCount }}
+                                                    </span>
+                                                @endif
+                                                </a></li>
+                                            <li><a href="#">{{ trans('Pending') }}</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-clone"></i> {{ trans('Discount') }} <span class="fa fa-chevron-down"></span></a>
@@ -79,34 +88,8 @@
                             <div class="menu_section">
                                 <h3>Live On</h3>
                                 <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-bug"></i> {{ trans('Additional Pages') }} <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="e_commerce.html">{{ trans('E-commerce') }}</a></li>
-                                            <li><a href="projects.html">{{ trans('Projects') }}</a></li>
-                                            <li><a href="project_detail.html">{{ trans('Project Detail') }}</a></li>
-                                            <li><a href="contacts.html">{{ trans('Contacts') }}</a></li>
-                                            <li><a href="profile.html">{{ trans('Profile') }}</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a><i class="fa fa-sitemap"></i> {{ trans('Multilevel Menu') }} <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="#level1_1">{{ trans('Level One') }}</a>
-                                                <li><a>{{ trans('Level One') }}<span class="fa fa-chevron-down"></span></a>
-                                                    <ul class="nav child_menu">
-                                                        <li class="sub_menu"><a href="level2.html">{{ trans('Level Two') }}</a>
-                                                        </li>
-                                                        <li><a href="#level2_1">{{ trans('Level Two') }}</a>
-                                                        </li>
-                                                        <li><a href="#level2_2">{{ trans('Level Two') }}</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </li>
-                                            <li><a href="#level1_2">{{ trans('Level One') }}</a>
-                                            </li>
-                                        </ul>
-                                    </li>                  
-                                    <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> {{ trans('Landing Page ') }} <span class="label label-success pull-right">{{ trans('Coming Soon') }}</span></a></li>
+                                    <li><a href="{{ route('index') }}"><i class="fa fa-bug"></i> {{ trans('Customer view') }}</a>
+                                    </li> 
                                 </ul>
                             </div>
                         </div>
@@ -154,58 +137,31 @@
                                         <span class="badge bg-green">6</span>
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                        <li>
-                                          <a>
-                                                <span class="image"><img src="{{ Url('images/img.jpg') }}" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">{{ trans('3 mins ago') }}</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="{{ Url('images/img.jpg') }}" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">{{ trans('3 mins ago') }}</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="{{ Url('images/img.jpg') }}" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">{{ trans('3 mins ago') }}</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="{{ Url('images/img.jpg') }}" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">{{ trans('3 mins ago') }}</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
+                                        @foreach($orderTime as $item)
+                                            <li>
+                                                <a href="{{ route('admin.order.index') }}">
+                                                    <span class="image">
+                                                        <img src="{{ asset(config('setup.user_avatar') . $item->user->avatar ) }}">
+                                                    </span>
+                                                    <span>
+                                                        {{ $item->user->name }}
+                                                    </span>
+                                                    <span>
+                                                        {{ $item->user->email }}
+                                                    </span>                             
+                                                    <span class="time">
+                                                        {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
+                                                    </span>                                                  
+                                                    <span class="message">
+                                                        Have ordered
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        @endforeach
                                         <li>
                                             <div class="text-center">
-                                                <a>
-                                                    <strong>{{ trans('See All Alerts') }}</strong>
+                                                <a href={{ route('admin.order.index') }}>
+                                                    <strong>See All Alerts</strong>
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
                                             </div>

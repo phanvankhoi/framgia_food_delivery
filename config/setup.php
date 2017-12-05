@@ -3,7 +3,7 @@
 return [
 
     'user_avatar' => 'images/avatar/',
-    'user_index_avatar' => '/images/avatar/',
+    'user_index_avatar' => 'images/avatar/',
     'user_paginate' => '10',
     'user_create' => 'admin.user.create',
     'user_index' => 'admin.user.index',
@@ -20,4 +20,5 @@ return [
     'category_update' => 'admin.category.update',
     'category_edit' => 'admin.category.edit',
     'food_image' => 'images/image/',
+    'pending' => '0',
 ];
