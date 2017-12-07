@@ -20,20 +20,18 @@
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                            	<th>{{ trans('admin_order.name') }}</th>
+                            	<th>{{ trans('admin_order.food') }}</th>
                                 <th>{{ trans('admin_order.quantity') }}</th>
-                                <th>{{ trans('admin_order.price') }}</th>
-                                <th>{{ trans('admin_order.food') }}</th>
+                                <th>{{ trans('admin_order.price') }}</th>                               
                             </tr>
                         </thead>                        
                         <tbody>
                             @if ($orders)
                                 @foreach($orders->foodOrders as $detailOrder)
                                     <tr>
-                                    	<td>{{ $detailOrder->order->user->name }}</td>
+                                        <td>{{ $detailOrder->food->name }}</td> 
                                         <td>{{ $detailOrder->quantity }}</td>
-                                        <td>{{ $detailOrder->price }}</td>                                        
-                                    	<td>{{ $detailOrder->food->name }}</td>                                  
+                                        <td>{{ number_format($detailOrder->price) }}đ</td>                                
                                     </tr>                             
                                 @endforeach
                             @endif

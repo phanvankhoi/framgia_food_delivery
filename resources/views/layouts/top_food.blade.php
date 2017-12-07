@@ -39,12 +39,7 @@
                                 <div class="text-sm-right">
                                     <div class="sortPagiBar text-sm-right">
                                         <div id="sort-by">
-                                            <label class="left hidden-xs">{{ trans('master.sort') }}: </label>
-                                            <div class="border_sort">
-                                                <select onChange="sortby(this.value)">
-                                                    <option class="valued" value="default">{{ trans('master.default') }}</option>
-                                                </select>
-                                            </div>
+                                            <label class="left hidden-xs"></label>
                                         </div>
                                     </div>
                                 </div>

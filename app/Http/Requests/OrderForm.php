@@ -25,7 +25,7 @@ class OrderForm extends FormRequest
     {
         return [
             'name' => 'required|max:30',
-            'phone' => 'size:11',
+            'phone' => 'min:10|max:11',
             'email' => 'required|email',
             'address' => 'string|required',
             'description' => 'nullable|string',
