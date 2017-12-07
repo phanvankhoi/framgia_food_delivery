@@ -144,14 +144,11 @@
                                                         <img src="{{ asset(config('setup.user_avatar') . $item->user->avatar ) }}">
                                                     </span>
                                                     <span>
-                                                        {{ $item->user->name }}
-                                                    </span>
-                                                    <span>
                                                         {{ $item->user->email }}
-                                                    </span>                             
-                                                    <span class="time">
+                                                    </span>
+                                                    <span class="time message">
                                                         {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
-                                                    </span>                                                  
+                                                    </span>                                            
                                                     <span class="message">
                                                         Have ordered
                                                     </span>

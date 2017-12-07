@@ -36,12 +36,12 @@
                             <tr>
                                 <th>{{ trans('admin_order.name') }}</th>
                                 <th>{{ trans('admin_order.email') }}</th>
+                                <th>{{ trans('admin_order.address') }}</th>
+                                <th>{{ trans('admin_order.phone') }}</th>
                                 <th>{{ trans('admin_order.total price (vnd)') }}</th>
                                 <th>{{ trans('admin_order.status') }}</th>
                                 <th>{{ trans('admin_order.description') }}</th>
-                                <th>{{ trans('admin_order.create date') }}</th>
-                                <th>{{ trans('admin_order.update date') }}</th>
-                                <th></th>
+                                <th>{{ trans('admin_order.date') }}</th>
                                 <th></th>
                             </tr>
                         </thead>                        
@@ -51,6 +51,8 @@
                                     <tr>
                                         <td>{{ $order->user->name }}</td>
                                         <td>{{ $order->user->email }}</td>
+                                        <td>{{ $order->user->address }}</td>
+                                        <td>{{ $order->user->phone }}</td>
                                         <td>{{ $order->total_price }}</td>
                                         <td>
                                             {!! Form::open([
@@ -61,9 +63,10 @@
                                             ]) !!}
                                             {!! Form::select('status', [
                                                 '0' => trans('admin_order.pending'),
-                                                '1' => trans('admin_order.canceled'),
+                                                '1' => trans('admin_order.confirmed'),
                                                 '2' => trans('admin_order.shipped'),
-                                                '3' => trans('admin_order.expired'),
+                                                '3' => trans('admin_order.done'),
+                                                '4' => trans('admin_order.canceled'),
                                             ], $value = $order['status'])
                                             !!}
                                             {!! Form::button('Update', [
@@ -74,7 +77,6 @@
                                         </td>
                                         <td>{{ $order->description }}</td>
                                         <td>{{ $order->created_at }}</td>
-                                        <td>{{ $order->updated_at }}</td>
                                         <td>
                                             {!! Form::open([
                                                 'route' => ['admin.order.detailOrder', $order->id], 
@@ -86,8 +88,7 @@
                                                 'class' => 'btn btn-primary fa fa-info-circle'
                                             ]) !!}
                                             {!! Form::close() !!}
-                                        </td>
-                                        <td>
+
                                             {!! Form::open([
                                                 'route' => ['admin.order.destroy', $order->id], 
                                                 'method' => 'delete', 

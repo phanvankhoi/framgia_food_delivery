@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Sites;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Food;
 use App\Models\Order;
 use App\Models\FoodOrder;
+use App\Http\Requests\OrderForm;
 use Cart;
 
 class CartController extends Controller
@@ -29,7 +31,10 @@ class CartController extends Controller
     public function addToCart(Request $request, $id) 
     {
         $food = Food::find($id);
-        if (isset($request->quantity)) $quantity = $request->quantity;
+        if (isset($request->quantity)) {
+            $request->validate(['quantity' => 'required|min:1|numeric']);
+            $quantity = $request->quantity;
+        }
         else $quantity = config('customer.product.default_qty');
         if ($food->discount_id != config('customer.product.no_discount')) {
             $food->price = $food->price * $food->discountFood->discount / config('customer.percentage');
@@ -90,7 +95,7 @@ class CartController extends Controller
         return response()->json($result);
     }
 
-    public function store(Request $request)
+    public function store(OrderForm $request)
     {   
         if(Cart::count() == 0) {
             session()->flash('message', 'Empty Cart');
@@ -118,7 +123,7 @@ class CartController extends Controller
 
         $order = new Order();
         $order->user_id = $user->id;
-        $order->description = $request->description;
+        $order->description = isset($request->description) ? $request->description : '';
         $order->date = date('Y-m-d H:i:s');
         $order->total_price = Cart::total();
         $order->status = config('customer.order.default_status');
@@ -128,7 +133,8 @@ class CartController extends Controller
             
             return back();
         }
-        DB::transaction(function () {
+        DB::transaction(function () use ($order)
+        {
             foreach (Cart::content() as $item) {
                 $food_order = new FoodOrder();
                 $food_order->order_id = $order->id;
@@ -140,7 +146,7 @@ class CartController extends Controller
         });
         session()->flash('message', 'Order Successfully');
 
-        return back();
+        return redirect('/');
     }
 
     public function destroyCart()

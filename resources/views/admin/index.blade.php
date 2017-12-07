@@ -4,36 +4,82 @@
 @endsection
 
 @section('content')
-<div class="row tile_count">
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> {{ trans('Total Users') }} </span>
-        <div class="count">2500</div>
-        <span class="count_bottom"><i class="green">4% </i> {{ trans('From last Week') }} </span>
+<div class="row top_tiles">
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-user-o"></i></div>
+            <div class="count">
+                @if(isset($userCount))
+                    {{ $userCount }}
+                @endif
+            </div>
+            <h3>{{ trans('Total Users') }}</h3>
+        </div>
     </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-clock-o"></i> {{ trans('Average Time') }} </span>
-        <div class="count">123.50</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> {{ trans('From last Week') }}</span>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-cutlery"></i></div>
+            <div class="count">
+                @if(isset($foodCount))
+                    {{ $foodCount }}
+                @endif
+            </div>
+            <h3>{{ trans('Total Foods') }}</h3>
+        </div>
     </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> {{ trans('Total Males') }} </span>
-        <div class="count green">2,500</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> {{ trans('From last Week') }} </span>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
+            <div class="count">
+                {{ App\Models\Food::where('status', config('setup.pending'))->count() }}
+            </div>
+            <h3>{{ trans('Pending Foods') }}</h3>
+        </div>
     </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> {{ trans('Total Females') }} </span>
-        <div class="count">4,567</div>
-        <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> {{ trans('From last Week') }} </span>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-edit"></i></div>
+            <div class="count">
+                @if(isset($orderCount))
+                    {{ $orderCount }}
+                @endif
+            </div>
+            <h3>{{ trans('Today Orders') }}</h3>
+        </div>
     </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> {{ trans('Total Collections') }} </span>
-        <div class="count">2,315</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> {{ trans('From last Week') }} </span>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-comments-o"></i></div>
+            <div class="count">
+                @if(isset($reviewCount))
+                    {{ $reviewCount }}
+                @endif
+            </div>
+            <h3>{{ trans('Today Reviews') }}</h3>
+        </div>
     </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> {{ trans('Total Connections') }} </span>
-        <div class="count">7,325</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> {{ trans('From last Week') }} </span>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-check-square-o"></i></div>
+            <div class="count">
+                135
+            </div>
+            <h3>{{ trans('Today Nones') }}</h3>
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-check-square-o"></i></div>
+            <div class="count">179</div>
+            <h3>{{ trans('Today Nones') }}</h3>
+        </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-check-square-o"></i></div>
+            <div class="count">179</div>
+            <h3>{{ trans('Today Nones') }}</h3>
+        </div>
     </div>
 </div>
 @endsection

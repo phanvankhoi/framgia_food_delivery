@@ -21,10 +21,10 @@ class Helper
     	if ($food->discountFood->id != config('customer.product.no_discount') 
                 && $food->discountFood->end_date >= Carbon::now()) {
     		
-            return $food->price - ( ($food->price * $food->discountFood->discount ) / config('customer.percentage') );
+            return number_format($food->price - ( ($food->price * $food->discountFood->discount ) / config('customer.percentage') ));
     	}
     	else {
-    		return $food->price;
+    		return number_format($food->price);
     	}
     }
 }

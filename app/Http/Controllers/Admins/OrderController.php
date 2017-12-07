@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admins;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirmed;
 use App\Models\Order;
 use App\Models\FoodOrder;
 
@@ -79,6 +81,10 @@ class OrderController extends Controller
         if ($orders = Order::find($id)) {
             $input = $request->only('status');
             if ($orders->update($input)) {
+                if($request->status == 1) {
+                    Mail::to($orders->user)->send(new OrderConfirmed($orders));
+                }
+
                 return redirect()->route('admin.order.index', [$id])->with('message', trans('admin_order.update success'));     
             } else {
                 return redirect()->route('admin.order.index', [$id])->with('message', trans('admin_order.update failed'));

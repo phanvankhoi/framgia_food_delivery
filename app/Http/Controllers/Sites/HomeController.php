@@ -11,7 +11,9 @@ class HomeController extends Controller
     
     public function index()
     {
-        return view('layouts.index');
+        $top_foods = Food::top(config('customer.product.index_qty'))->get();
+
+        return view('layouts.index', compact(['top_foods']));
     }
 
     public function viewContact()
@@ -26,7 +28,7 @@ class HomeController extends Controller
 
     public function viewTopFood()
     {
-        $foods = Food::top();
+        $foods = Food::top(config('customer.product.limit_qty'));
         $paginate = $foods->pagination(config('customer.top_food.paginate'));
         $count = $foods->count();
 

@@ -42,7 +42,7 @@
                             </div>
                             <div class="block-content form-signup">
                                 @if (isset($user->avatar))
-                                    <img src="{{ $user->avatar }}">
+                                    <img src="{{ $user->avatar }}" style="max-height: 300px; max-width: 200px;">
                                 @endif
                                 @if (isset($user->address))
                                     <p><i class="fa fa-home font-some" aria-hidden="true"></i>  <span>{{ trans('master.address') }}: {{ $user->address }}</span></p>

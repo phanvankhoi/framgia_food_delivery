@@ -14,7 +14,7 @@ class CategoryController extends Controller
     	$foods = Food::all();
     	$paginate = Food::pagination(config('customer.category.paginate'));
         $count = $foods->count();
-        $top_foods = Food::top()->get();
+        $top_foods = Food::top(config('customer.product.limit_qty'))->get();
 
      	return view('layouts.category', compact(['count',
             'foods',
@@ -28,7 +28,7 @@ class CategoryController extends Controller
     	$foods = Food::where('category_id', $id);
     	$paginate = $foods->pagination(config('customer.category.paginate'));
         $count = $foods->count();
-        $top_foods = $foods->top()->get();
+        $top_foods = $foods->top(config('customer.product.limit_qty'))->get();
 
     	return view('layouts.category', compact(['count',
             'foods',

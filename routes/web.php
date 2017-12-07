@@ -59,3 +59,5 @@ Route::get('profile', 'Sites\UserController@showProfile')->name('showProfile');
 Route::get('editprofile', 'Sites\UserController@getProfile')->name('getProfile');
 Route::post('editprofile', 'Sites\UserController@editProfile')->name('editProfile');
 Route::get('order', 'Sites\OrderController@index')->name('order');
+Route::get('order/{id}', 'Sites\OrderController@show')->name('order_detail');
+Route::get('remove/{id}', 'Sites\OrderController@remove')->name('removeOrder');
