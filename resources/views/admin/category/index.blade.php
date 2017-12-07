@@ -29,6 +29,7 @@
                                 </label>
                             </div>
                         </div>
+                        
                     </div>                    
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
@@ -83,4 +84,5 @@
 @endsection
 @push('scripts')
     {{ Html::script('js/admin.js') }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 @endpush

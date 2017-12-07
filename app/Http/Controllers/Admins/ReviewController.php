@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Sites;
+namespace App\Http\Controllers\Admins;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use App\Models\Food;
+use App\Models\User;
 
 class ReviewController extends Controller
 {
@@ -14,9 +15,14 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('layouts.review');
+        $reviews = Review::paginate(config('setup.user_paginate'));
+        if ($request->ajax()) {            
+            return view('admin.review.paginate', compact('reviews'))->render();
+        }
+        
+        return view('admin.review.index', compact('reviews'));
     }
 
     /**
@@ -24,11 +30,9 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $review = Review::find($request->id);
-
-        return view('layouts.review', compact('review'))->render();
+        //
     }
 
     /**
@@ -39,22 +43,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $user_id = Auth::user()->id;
-            $review = new Review();
-            $review->user_id = $user_id;
-            $review->food_id = $request->food_id;
-            $review->content = $request->content;
-            $review->rate = $request->rating;
-            $review->save();
-            session()->flash('success', trans('master.successToReview'));
-
-            return back();
-        } catch (Exception $e) {
-            session()->flash('error', trans('master.failToReview'));
-
-            return back();
-        }
+        //
     }
 
     /**
@@ -88,19 +77,7 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $review = Review::find($id);
-            $review->rate = $request->rating;
-            $review->content = $request->content;
-            $review->save();
-            session()->flash('success', trans('master.successToReview'));
-
-            return back();
-        } catch (Exception $e) {
-            session()->flash('error', trans('master.failToReview'));
-
-            return back();
-        }
+        //
     }
 
     /**
@@ -111,6 +88,21 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            if ($reviews = Review::find($id)) {
+                $reviews->delete();
+                session()->flash('success', trans('admin_user.delete success'));
+
+                return redirect('admin/review');
+            } else {
+                session()->flash('fail', trans('admin_user.not id'));
+
+                return back('admin/review');
+            }
+        } catch (\Exception $e) {
+            session()->flash('fail', trans('admin_user.add_fail'));
+            
+            return redirect('admin/review');
+        }
     }
 }

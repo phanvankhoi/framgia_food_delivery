@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title')</title>
         {{ Html::style('/bower/bootstrap/dist/css/bootstrap.min.css') }}
+        {{ Html::style('/bower/bootstrap-rating/bootstrap-rating.css') }}
         {{ Html::style('/bower/font-awesome/css/font-awesome.min.css') }}
         {{ Html::style('/bower/nprogress/nprogress.css') }}
         {{ Html::style('/bower/iCheck/skins/flat/green.css') }}
@@ -83,6 +84,11 @@
                                             <li><a href="{{ route('admin.discount.create') }}">{{ trans('Add Discount') }}</a></li>
                                         </ul>
                                     </li>
+                                    <li><a><i class="fa fa-clone"></i> {{ trans('Review') }} <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ route('admin.review.index') }}">{{ trans('Review') }}</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="menu_section">
@@ -132,9 +138,13 @@
                                     </ul>
                                 </li>
                                 <li role="presentation" class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <a href="{{ route('admin.order.index') }}" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">6</span>
+                                        @if(isset($pendingEventCount))
+                                            <span class="badge bg-green">
+                                                {{ $pendingEventCount }}
+                                            </span>
+                                        @endif
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                         @foreach($orderTime as $item)
@@ -184,6 +194,7 @@
             </div>
         </div>
         {{ Html::script('/bower/bower_food_delivery/vendors/jquery/dist/jquery.js') }}
+        {{ Html::script('/bower/bootstrap-rating/bootstrap-rating.js') }}
         {{ Html::script('/bower/bootstrap/dist/js/bootstrap.min.js') }}
         {{ Html::script('/bower/fastclick/lib/fastclick.js') }}
         {{ Html::script('/bower/nprogress/nprogress.js') }}

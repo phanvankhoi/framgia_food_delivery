@@ -34,9 +34,9 @@
                         <td><img src="{{ asset(config('setup.food_image') . $food['image']) }}" width="60" height="60"></td>
                         <td>{{ $food->discountFood->discount }}</td>
                         <td>{{ $food->price }} Vnd</td>
-                        <td>{{ $food->status == 1 ? trans('admin_food.activate') : trans('admin_food.pending') }}</td>
+                        <td>{{ $food->status == config('setup.one') ? trans('admin_food.activate') : trans('admin_food.pending') }}</td>
                         <td>{{ $food->description }}</td>
-                        <td>{{ $food->is_top == 1 ? trans('admin_food.yes') : trans('admin_food.no') }}</td>
+                        <td>{{ $food->is_top == config('setup.one') ? trans('admin_food.yes') : trans('admin_food.no') }}</td>
                         <td>{{ $food->category->name }}</td>
                         <td>
                             {!! Form::open([

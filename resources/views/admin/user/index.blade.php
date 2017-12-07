@@ -88,5 +88,5 @@
 @endsection
 @push('scripts')
     {{ Html::script('js/admin.js') }}
-    {{ Html::script('js/search-ajax.js') }}
+    {{ Html::script('js/search-user.js') }}
 @endpush

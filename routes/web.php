@@ -22,7 +22,7 @@ Route::group(['prefix' => 'cart'], function () {
 	Route::get('remove/{id}', 'Sites\CartController@removeFromCart')->name('removeFromCart');
 	Route::post('update/{id}', 'Sites\CartController@updateCart')->name('updateCart');
 	Route::post('check', 'Sites\CartController@checkEmail')->name('checkEmail');
-  Route::get('destroy', 'Sites\CartController@destroyCart')->name('destroyCart');
+    Route::get('destroy', 'Sites\CartController@destroyCart')->name('destroyCart');
 });
 Route::resource('/cart', 'Sites\CartController');
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admins', 'middleware' => 'AdminMiddleware'], function () {
@@ -31,7 +31,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admins', 'm
     Route::resource('/discount', 'DiscountController');
     Route::resource('/food', 'FoodController');
     Route::resource('/order', 'OrderController');
+    Route::resource('/review', 'ReviewController');
     Route::get('/search', 'UserController@search');
+    Route::get('/search/food', 'FoodController@search');
     Route::get('/order/detail/{id}', 'OrderController@orderDetail')->name('order.detailOrder');
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/profile', 'UserController@profile')->name('profile');

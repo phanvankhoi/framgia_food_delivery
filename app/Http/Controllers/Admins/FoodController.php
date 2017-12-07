@@ -139,4 +139,19 @@ class FoodController extends Controller
             return redirect('admin/food');
         }
     }
+
+    public function search(Request $request)
+    {   
+        try {
+            $name = $request->name;
+            $foods = Food::where('name', 'like', '%'. $name .'%')->get();
+            $html = view('admin.food.search', compact('foods'))->render();
+
+            return response($html);
+        } catch (Exception $e) {
+            $response['error'] = true;
+            
+            return response()->json($response);
+        }
+    }
 }

@@ -27,7 +27,7 @@
                         <div class="col-sm-6">
                             <div id="datatable_filter" class="dataTables_filter">
                                 <label>
-                                    <input type="search" class="form-control input-sm" placeholder="{{ trans('admin_food.Search') }}" aria-controls="datatable">
+                                    <input type="text" id="search_food" class="form-control input-sm" placeholder="{{ trans('admin_food.Search') }}" aria-controls="datatable">
                                 </label>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                 @foreach($foods as $food)
                                     <tr>
                                         <td>{{ $food->name }}</td>
-                                        <td><img src="{{ asset(config('setup.food_image') . $food['image']) }}" width="60" height="60"></td>
+                                        <td><img src="{{ $food->image }}" class="img-rounded" alt="none"></td>
                                         <td>{{ $food->discountFood->discount }}</td>
                                         <td>{{ $food->price }}</td>
                                         <td>{{ $food->status == 1 ? trans('admin_food.activate') : trans('admin_food.pending') }}</td>
@@ -94,3 +94,6 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    {{ Html::script('js/search-food.js') }}
+@endpush

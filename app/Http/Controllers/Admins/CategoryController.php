@@ -99,14 +99,18 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $categories = new Category;
-        $input = $request->all();
+        if ($categories = $categories->find($id)) {
+            $input = $request->all();
+            if ($categories->update($input)) {
 
-        if ($categories->update($input)) {
+                return redirect()->route('admin.category.index');
+            } else {
 
-            return redirect()->route('admin.category.index');
+                return redirect()->route('admin.category.edit')->with('message', trans('messages.create_failed'));
+            }
         } else {
-
-            return redirect()->route('admin.category.create')->with('message', trans('messages.create_failed'));
+            session()->flash('fail', trans('admin_user.not id'));
+            return redirect('admin.category.index');
         }
     }
 
