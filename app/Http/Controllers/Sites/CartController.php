@@ -110,6 +110,8 @@ class CartController extends Controller
             $user = new User();
             $user->email = $request->email;
             $user->password = bcrypt('');
+            $user->role = config('customer.user.default_role');
+            $user->avatar = config('customer.user.default_avatar');
         }
         $user->name = $request->name;
         $user->address = $request->address;
@@ -144,9 +146,10 @@ class CartController extends Controller
                 $food_order->save();
             }
         });
+        Cart::destroy();
         session()->flash('message', 'Order Successfully');
 
-        return redirect('/');
+        return redirect()->route('order_detail', $order->id);
     }
 
     public function destroyCart()

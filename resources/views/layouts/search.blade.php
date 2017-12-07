@@ -27,24 +27,6 @@
                     </div>
                 </div>
                 <div class="category-products products">
-                    <div class="sortPagiBar">
-                        <div class="srt">
-                            <div class="wr_sort col-sm-12 col-xs-12">
-                                <div class="text-sm-right">
-                                    <div class="sortPagiBar text-sm-right">
-                                        <div id="sort-by">
-                                            <label class="left hidden-xs">{{ trans('master.sort') }}: </label>
-                                            <div class="border_sort">
-                                                <select onChange="sortby(this.value)">
-                                                    <option class="valued" value="default">{{ trans('master.default') }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <section class="products-view products-view-grid collection_reponsive">
                         <div class="row">
                         	@foreach ($foods as $food)

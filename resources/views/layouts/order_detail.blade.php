@@ -63,4 +63,9 @@
     </div>
 </section>
 {{ Html::script('js/check_email.js') }}
+@if (session()->has('message'))
+    <script>
+        alert('{{ Session::get('message') }}');
+    </script>
+ @endif
 @endsection

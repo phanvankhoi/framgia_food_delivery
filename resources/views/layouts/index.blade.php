@@ -336,9 +336,4 @@
     </section>
 </section>
 <div class="bizweb-product-reviews-module"></div>
-@if (session()->has('message'))
-    <script>
-        alert('{{ Session::get('message') }}');
-    </script>
- @endif
 @endsection

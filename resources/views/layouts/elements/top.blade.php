@@ -68,7 +68,7 @@
                                                                 <span class="quaty item_quanty_count">{{ $item->qty }}</span><a href="{{ route('removeFromCart', $item->rowId) }}" title="{{ trans('master.delete') }}" class="remove-item-cart fa fa-times">&nbsp;</a>
                                                                 <p class="product-name"> <a class="text2line" href="{{ route('food', $item->id) }}" title="{{ $item->name }}">{{ $item->name }}</a></p>
                                                             </div>
-                                                            <div class="product-details-bottom"><span class="price">{{ $item->price }}{{ trans('master.unit') }}</span></div>
+                                                            <div class="product-details-bottom"><span class="price">{{ \App\Helpers\Helper::showPrice($food) }}{{ trans('master.unit') }}</span></div>
                                                         </div>
                                                     </div>
                                                 </li>
