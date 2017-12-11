@@ -23,9 +23,7 @@
                             <tr>
                             	<th>{{ trans('admin_order.food') }}</th>
                                 <th>{{ trans('admin_order.quantity') }}</th>
-                                <th>{{ trans('admin_order.price') }}</th>
-                                <th></th>
-                                <th></th>                               
+                                <th>{{ trans('admin_order.price') }}</th>                               
                             </tr>
                         </thead>                        
                         <tbody>
@@ -34,7 +32,11 @@
                                     <tr>                                        
                                         <td>{{ $order->food->name }}</td> 
                                         <td>{{ $order->quantity }}</td>
-                                        <td>{{ number_format($order->price) }}đ</td> 
+                                        <td>{{ number_format($order->price) }}đ</td>                     
+                                    </tr>
+                                @endforeach
+                            @endif
+                            <tr>
                                         <td>
                                             {!! Form::open([
                                                 'route' => ['admin.order.update', $orders['id']], 
@@ -67,10 +69,9 @@
                                                 'class' => 'btn btn-danger fa fa-trash'
                                             ]) !!}
                                             {!! Form::close() !!}
-                                        </td>                     
-                                    </tr>                      
-                                @endforeach
-                            @endif                            
+                                        </td> 
+                                        <td></td>
+                                    </tr>                                               
                         </tbody>        
                     </table>                        
                 </div>

@@ -37,7 +37,7 @@ class CartController extends Controller
         }
         else $quantity = config('customer.product.default_qty');
         if ($food->discount_id != config('customer.product.no_discount')) {
-            $food->price = $food->price * $food->discountFood->discount / config('customer.percentage');
+            $food->price -= $food->price * $food->discountFood->discount / config('customer.percentage');
         }
         Cart::add($food->id, $food->name, $quantity, $food->price, ['image' => $food->image]);
         session()->flash('message', $food->name . ' has been added to cart');

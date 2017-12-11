@@ -68,14 +68,14 @@
                                                                 <span class="quaty item_quanty_count">{{ $item->qty }}</span><a href="{{ route('removeFromCart', $item->rowId) }}" title="{{ trans('master.delete') }}" class="remove-item-cart fa fa-times">&nbsp;</a>
                                                                 <p class="product-name"> <a class="text2line" href="{{ route('food', $item->id) }}" title="{{ $item->name }}">{{ $item->name }}</a></p>
                                                             </div>
-                                                            <div class="product-details-bottom"><span class="price">{{ number_format($item) }}{{ trans('master.unit') }}</span></div>
+                                                            <div class="product-details-bottom"><span class="price">{{ number_format($item->subtotal) }}{{ trans('master.unit') }}</span></div>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 @endforeach
                                             </ul>
                                             <div class="wrap_total">
-                                                <div class="top-subtotal">{{ trans('master.total') }}: <span class="price">{{ Cart::total() }}{{ trans('master.unit') }}</span></div>
+                                                <div class="top-subtotal">{{ trans('master.total') }}: <span class="price">{{ number_format(Cart::total()) }}{{ trans('master.unit') }}</span></div>
                                             </div>
                                             <div class="wrap_button">
                                                 <div class="actions"><a href="{{ route('cart.index') }}" class="btn btn-gray btn-checkout"><span>{{ trans('master.confirmOrder') }}</span></a></div>

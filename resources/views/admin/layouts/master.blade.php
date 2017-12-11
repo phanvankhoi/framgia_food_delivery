@@ -143,7 +143,7 @@
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                         @foreach($orderTime as $item)
                                             <li>
-                                                <a href="{{ route('admin.order.index') }}">
+                                                <a href="{{ route('admin.order.detailOrder', $item->id) }}">
                                                     <span class="image">
                                                         <img src="{{ $item->user->avatar }}">
                                                     </span>
