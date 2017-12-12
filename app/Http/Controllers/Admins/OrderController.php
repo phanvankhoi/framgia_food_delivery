@@ -107,6 +107,7 @@ class OrderController extends Controller
         
         try {
             if ($orders = Order::find($id)) {
+                $orders->foodOrders()->delete();
                 $orders->delete();
                 session()->flash('success', trans('admin_user.delete success'));
 

@@ -41,6 +41,7 @@ return [
     'canceled' => 'canceled',
     'shipped' => 'shipped',
     'confirmed' => 'confirmed',
+    'delivery' => 'delivery',
     'quantity' => 'quantity',
     'food' => 'food',
     'Order detail' => 'Order detail',

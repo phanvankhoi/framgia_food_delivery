@@ -54,26 +54,17 @@
                                         <td>{{ $order->user->address }}</td>
                                         <td>{{ $order->user->phone }}</td>
                                         <td>{{ $order->total_price }}</td>
-                                        <td>
-                                            {!! Form::open([
-                                                'route' => ['admin.order.update', $order['id']], 
-                                                'method' => 'PUT', 
-                                                'enctype' => 'multipart/form-data',
-                                                'class' => 'form-group'
-                                            ]) !!}
-                                            {!! Form::select('status', [
-                                                '0' => trans('admin_order.pending'),
-                                                '1' => trans('admin_order.confirmed'),
-                                                '2' => trans('admin_order.shipped'),
-                                                '3' => trans('admin_order.done'),
-                                                '4' => trans('admin_order.canceled'),
-                                            ], $value = $order['status'])
-                                            !!}
-                                            {!! Form::button('Update', [
-                                                'type'=>'submit',
-                                                'class' => 'btn btn-success fa fa-check'
-                                            ]) !!}
-                                            {!! Form::close() !!}
+                                        <td>@if ($order->status == config('customer.order.pending'))
+                                                {{ trans('admin_order.pending') }}
+                                            @elseif ($order->status == config('customer.order.confirmed'))
+                                                {{ trans('admin_order.confirmed') }}
+                                            @elseif ($order->status == config('customer.order.delivery'))
+                                                {{ trans('admin_order.delivery') }}
+                                            @elseif ($order->status == config('customer.order.done'))
+                                                {{ trans('admin_order.done') }}
+                                            @else
+                                                {{ trans('admin_order.canceled') }}
+                                            @endif
                                         </td>
                                         <td>{{ $order->description }}</td>
                                         <td>{{ $order->created_at }}</td>
@@ -86,17 +77,6 @@
                                             {!! Form::button('Detail', [
                                                 'type'=>'submit',
                                                 'class' => 'btn btn-primary fa fa-info-circle'
-                                            ]) !!}
-                                            {!! Form::close() !!}
-
-                                            {!! Form::open([
-                                                'route' => ['admin.order.destroy', $order->id], 
-                                                'method' => 'delete', 
-                                                'id' => 'form-delete'
-                                            ]) !!}
-                                            {!! Form::button('Delete', [
-                                                'type'=>'submit',
-                                                'class' => 'btn btn-danger fa fa-trash'
                                             ]) !!}
                                             {!! Form::close() !!}
                                         </td>

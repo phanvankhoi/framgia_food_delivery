@@ -21,4 +21,5 @@ return [
     'category_edit' => 'admin.category.edit',
     'food_image' => 'images/image/',
     'pending' => '0',
+    'one' => '1',
 ];

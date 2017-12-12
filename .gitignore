@@ -1,9 +1,5 @@
-/public/bower
 /node_modules
-/public/hot
-/public/storage
 /storage/*.key
-/vendor
 /.idea
 /.vagrant
 Homestead.json
@@ -12,3 +8,4 @@ npm-debug.log
 yarn-error.log
 .env
 /public/bower
+/public/images
