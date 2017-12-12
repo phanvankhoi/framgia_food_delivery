@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Sites;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Food;
 use App\Models\Order;
 use App\Models\FoodOrder;
+use App\Http\Requests\OrderForm;
 use Cart;
 
 class CartController extends Controller
@@ -19,6 +21,7 @@ class CartController extends Controller
         $total = Cart::total();
         if(Auth::check()) {
             $user = Auth::user();
+
             return view('layouts.cart', compact(['cart_items', 'total', 'user']));
         }
         
@@ -28,8 +31,14 @@ class CartController extends Controller
     public function addToCart(Request $request, $id) 
     {
         $food = Food::find($id);
-        if (isset($request->quantity)) $quantity = $request->quantity;
+        if (isset($request->quantity)) {
+            $request->validate(['quantity' => 'required|min:1|numeric']);
+            $quantity = $request->quantity;
+        }
         else $quantity = config('customer.product.default_qty');
+        if ($food->discount_id != config('customer.product.no_discount')) {
+            $food->price = $food->price * $food->discountFood->discount / config('customer.percentage');
+        }
         Cart::add($food->id, $food->name, $quantity, $food->price, ['image' => $food->image]);
         session()->flash('message', $food->name . ' has been added to cart');
 
@@ -86,7 +95,7 @@ class CartController extends Controller
         return response()->json($result);
     }
 
-    public function store(Request $request)
+    public function store(OrderForm $request)
     {   
         if(Cart::count() == 0) {
             session()->flash('message', 'Empty Cart');
@@ -101,35 +110,52 @@ class CartController extends Controller
             $user = new User();
             $user->email = $request->email;
             $user->password = bcrypt('');
+            $user->role = config('customer.user.default_role');
+            $user->avatar = config('customer.user.default_avatar');
         }
         $user->name = $request->name;
         $user->address = $request->address;
         $user->phone = $request->phone;
-        $user->save(); 
+        $check_user = $user->save();
+        if(!$check_user) {
+            session()->flash('error', trans('master.failtOrder'));
+            
+            return back();
+        } 
 
         $order = new Order();
         $order->user_id = $user->id;
-        $order->description = $request->description;
+        $order->description = isset($request->description) ? $request->description : '';
         $order->date = date('Y-m-d H:i:s');
         $order->total_price = Cart::total();
         $order->status = config('customer.order.default_status');
-        $order->save();
-
-        foreach(Cart::content() as $item) {
-            $food_order = new FoodOrder();
-            $food_order->order_id = $order->id;
-            $food_order->food_id = $item->id;
-            $food_order->quantity = $item->qty;
-            $food_order->price = $item->subtotal;
-            $food_order->save(); 
+        $check_order = $order->save();
+        if(!$check_order) {
+            session()->flash('error', trans('master.failtOrder'));
+            
+            return back();
         }
+        DB::transaction(function () use ($order)
+        {
+            foreach (Cart::content() as $item) {
+                $food_order = new FoodOrder();
+                $food_order->order_id = $order->id;
+                $food_order->food_id = $item->id;
+                $food_order->quantity = $item->qty;
+                $food_order->price = $item->subtotal;
+                $food_order->save();
+            }
+        });
+        Cart::destroy();
         session()->flash('message', 'Order Successfully');
-        return back();
+
+        return redirect()->route('order_detail', $order->id);
     }
 
     public function destroyCart()
     {
         Cart::destroy();
+        
         return back();
     }
 

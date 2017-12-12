@@ -14,8 +14,8 @@ Route::get('/', 'Sites\HomeController@index')->name('index');
 Route::get('404', 'Sites\HomeController@view404')->name('404');
 Route::get('contact', 'Sites\HomeController@viewContact')->name('contact');
 Route::get('topfood', 'Sites\HomeController@viewTopFood')->name('topFood');
+Route::get('discount', 'Sites\HomeController@viewDiscountFood')->name('discountFood');
 Route::post('search', 'Sites\HomeController@searchFood')->name('search');
-Route::resource('/news', 'Sites\NewsController');
 Route::resource('review', 'Sites\ReviewController');
 Route::group(['prefix' => 'cart'], function () {
 	Route::post('add/{id}', 'Sites\CartController@addToCart')->name('addToCart');
@@ -24,7 +24,7 @@ Route::group(['prefix' => 'cart'], function () {
 	Route::post('check', 'Sites\CartController@checkEmail')->name('checkEmail');
     Route::get('destroy', 'Sites\CartController@destroyCart')->name('destroyCart');
 });
-Route::resource('/cart', 'Sites\CartController');
+Route::resource('cart', 'Sites\CartController');
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admins', 'middleware' => 'AdminMiddleware'], function () {
     Route::resource('/user', 'UserController');
     Route::resource('/category', 'CategoryController');
@@ -61,3 +61,5 @@ Route::get('profile', 'Sites\UserController@showProfile')->name('showProfile');
 Route::get('editprofile', 'Sites\UserController@getProfile')->name('getProfile');
 Route::post('editprofile', 'Sites\UserController@editProfile')->name('editProfile');
 Route::get('order', 'Sites\OrderController@index')->name('order');
+Route::get('order/{id}', 'Sites\OrderController@show')->name('order_detail');
+Route::get('remove/{id}', 'Sites\OrderController@remove')->name('removeOrder');

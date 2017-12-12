@@ -55,7 +55,7 @@
                 </tr>               
                 <tr>
                     <td>{!! Form::label('image', trans('admin_food.image')) !!}</td>
-                    <td><img src="{{ asset(config('setup.food_image') . $foods['image']) }}" width="60" height="60">
+                    <td><img src="{{ $foods['image'] }}" width="60" height="60">
                         {!! Form::file('image', $value = '') !!}</td>
                 </tr>
             </table>

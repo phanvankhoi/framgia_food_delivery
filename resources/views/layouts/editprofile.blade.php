@@ -57,7 +57,7 @@
                                 <div class="col-xs-12 col-lg-12">
                                     <fieldset class="form-group">
                                         <label>{{ trans('master.address') }}</label>
-                                        <input type="text" class="form-control req" name="address" placeholder="Nhập địa chỉ của bạn" value="{{ old('address') !== null ? old('address') : $user->address }}">
+                                        <input type="text" class="form-control" name="address" placeholder="Nhập địa chỉ của bạn" value="{{ old('address') !== null ? old('address') : $user->address }}">
                                         @if ($errors->has('address'))                                        
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('address') }}</strong>

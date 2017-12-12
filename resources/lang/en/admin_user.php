@@ -22,4 +22,5 @@ return [
 	'confirm password'=>'confirm password',
 	'Add User'=>'Add User',
 	'List User'=> 'List User',
+	'Profile' => 'Profile',
 ];

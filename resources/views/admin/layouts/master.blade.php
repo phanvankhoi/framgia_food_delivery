@@ -127,12 +127,6 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                                         <li><a href="{{ route('admin.profile') }}"> {{ trans('Profile') }}</a></li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="badge bg-red pull-right">50%</span>
-                                                <span>{{ trans('Settings') }}</span>
-                                            </a>
-                                        </li>
                                         <li><a href="javascript:;">{{ trans('Help') }}</a></li>
                                         <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out pull-right"></i> {{ trans('Log Out') }}</a></li>
                                     </ul>
@@ -151,17 +145,14 @@
                                             <li>
                                                 <a href="{{ route('admin.order.index') }}">
                                                     <span class="image">
-                                                        <img src="{{ asset(config('setup.user_avatar') . $item->user->avatar ) }}">
-                                                    </span>
-                                                    <span>
-                                                        {{ $item->user->name }}
+                                                        <img src="{{ $item->user->avatar }}">
                                                     </span>
                                                     <span>
                                                         {{ $item->user->email }}
-                                                    </span>                             
-                                                    <span class="time">
+                                                    </span>
+                                                    <span class="time message">
                                                         {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
-                                                    </span>                                                  
+                                                    </span>                                            
                                                     <span class="message">
                                                         Have ordered
                                                     </span>

@@ -52,11 +52,11 @@
                                 @foreach($foods as $food)
                                     <tr>
                                         <td>{{ $food->name }}</td>
-                                        <td><img src="{{ $food->image }}" class="img-rounded" alt="none"></td>
+                                        <td><img src="{{ $food->image }}" class="img-rounded" alt="none" style="width: 60px; height: 60px;"></td>
                                         <td>{{ $food->discountFood->discount }}</td>
-                                        <td>{{ $food->price }}</td>
+                                        <td>{{ number_format($food->price) }}</td>
                                         <td>{{ $food->status == 1 ? trans('admin_food.activate') : trans('admin_food.pending') }}</td>
-                                        <td>{{ $food->description }}</td>
+                                        <td>{{ str_limit($food->description, config('customer.product.description')) }}</td>
                                         <td>{{ $food->is_top == 1 ? trans('admin_food.yes') : trans('admin_food.no') }}</td>
                                         <td>{{ $food->category->name }}</td>
                                         <td>
