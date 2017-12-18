@@ -32,6 +32,15 @@
         <h1 class="title-head-login"><a href="#">{{ trans('master.cart') }}</a></h1>
         <div class="col-main cart_desktop_page cart-page">
             <div class="cart page_cart cart_des_page hidden-xs-down">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 pd-right cart_desktop ">
                     <div class="bg-scroll">
                         <div class="cart-thead">
@@ -55,12 +64,12 @@
                                             {{ csrf_field() }}
                                             <div class="input_qty_pr">
                                                 <input class="reduced_pop items-count btn-minus" type="submit" value="–" name="desc">
-                                                <input maxlength="12" min="0" class="input-text number-sidebar input_pop input_pop" name="quantity" size="4" value="{{ $item->qty }}" type="text" >
+                                                <input maxlength="12" min="1" class="input-text number-sidebar input_pop input_pop" name="quantity" size="4" value="{{ $item->qty }}" type="text" >
                                                 <input class="increase_pop items-count btn-plus" type="submit" value="+" name="inc">
                                             </div>
                                         </form>
                                     </div>
-                                    <div style="width: 20%" class="a-center"><span class="item-price cart-price"> <span class="price pink">{{ $item->subtotal }}{{ trans('master.unit') }}</span> </span></div>
+                                    <div style="width: 20%" class="a-center"><span class="item-price cart-price"> <span class="price pink">{{ number_format($item->subtotal) }}{{ trans('master.unit') }}</span> </span></div>
                                 </div>
                             @endforeach
                         </div>
@@ -84,7 +93,7 @@
                                     <div class="wrap_checkprice">
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.total') }}:</span>
-                                            <span class="li-right totals_price price">{{ $total }}{{ trans('master.unit') }}</span>
+                                            <span class="li-right totals_price price">{{ number_format($total) }}{{ trans('master.unit') }}</span>
                                         </div>
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.email') }}</span>
@@ -114,7 +123,7 @@
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.description') }}</span>
                                             <span class="li-right totals_price price pink">
-                                                <input type="text" class="form-control " value="{{ old('description') }}" name="description" placeholder="{{ trans('master.description') }}" id="description" required>
+                                                <input type="text" class="form-control " value="{{ old('description') }}" name="description" placeholder="{{ trans('master.description') }}" id="description">
                                             </span>
                                         </div>
                                     </div>

@@ -24,7 +24,7 @@ class DiscountForm extends FormRequest
     public function rules()
     {
         return [
-            'discount' => 'required|numeric',
+            'discount' => 'required|numeric|min:0',
             'start_date' => 'required',
             'end_date' => 'required'
         ];

@@ -8,6 +8,7 @@ use App\Models\Food;
 use App\Models\Category;
 use App\Models\DiscountFood;
 use App\Helpers\helper;
+use App\Http\Requests\FoodForm;
 use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
@@ -20,7 +21,7 @@ class FoodController extends Controller
      */
     public function index(Request $request)
     {
-        $foods = Food::paginate(10);
+        $foods = Food::paginate(5);
         if ($request->ajax()) {            
             return view('admin.food.paginate', compact('foods'))->render();
         }
@@ -47,7 +48,7 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FoodForm $request)
     {
         $foods = new Food;
         $input = $request->all();
@@ -137,6 +138,21 @@ class FoodController extends Controller
             session()->flash('fail', trans('admin_food.not id'));
 
             return redirect('admin/food');
+        }
+    }
+
+    public function search(Request $request)
+    {   
+        try {
+            $name = $request->name;
+            $foods = Food::where('name', 'like', '%'. $name .'%')->get();
+            $html = view('admin.food.search', compact('foods'))->render();
+
+            return response($html);
+        } catch (Exception $e) {
+            $response['error'] = true;
+            
+            return response()->json($response);
         }
     }
 }

@@ -9,13 +9,14 @@
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "~3.3",
         "gloudemans/shoppingcart": "^2.4",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "fzaninotto/faker": "~1.4",
         "laravelcollective/html": "^5.5"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
-        "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0"
     },

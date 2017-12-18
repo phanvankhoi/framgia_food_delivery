@@ -27,21 +27,25 @@ class UserController extends Controller
     }
 
     public function editProfile(EditProfileRequest $request)
-    {   
-       
+    {
         $user = Auth::user();
         $user->name = $request->name;
-        $user->email = $request->email; 
+        $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
-            $fileName = time() . '.' . $file->getClientOriginalExtension('avatar');            
-            $file->move(config('customer.link.avatar'), $fileName);
-            File::delete($user->avatar);
-            $user->avatar = config('customer.link.avatar').$fileName;
+            $fileName = time() . '.' . $file->getClientOriginalExtension('avatar');
+            $file->move(config('customer.link.avatar_folder'), $fileName);
+            File::delete('../public' . $user->avatar);
+            $user->avatar = $fileName;
         }
-        $user->save();
+        $check = $user->save();
+        if (!$check) {
+            session()->flash('error', trans('master.failOrder'));
+
+            return back();
+        }
 
         return redirect()->route('showProfile');
     }

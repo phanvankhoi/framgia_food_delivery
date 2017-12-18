@@ -11,7 +11,9 @@ class HomeController extends Controller
     
     public function index()
     {
-        return view('layouts.index');
+        $top_foods = Food::top(config('customer.product.index_qty'))->get();
+
+        return view('layouts.index', compact(['top_foods']));
     }
 
     public function viewContact()
@@ -26,7 +28,7 @@ class HomeController extends Controller
 
     public function viewTopFood()
     {
-        $foods = Food::top();
+        $foods = Food::top(config('customer.product.limit_qty'));
         $paginate = $foods->pagination(config('customer.top_food.paginate'));
         $count = $foods->count();
 
@@ -49,5 +51,16 @@ class HomeController extends Controller
         }
 
         return view('layouts.search', compact('foods'))->render();
+    }
+
+    public function viewDiscountFood()
+    {
+        $foods = Food::where('discount_id', '<>', config('customer.product.no_discount'));
+        $paginate = $foods->pagination(config('customer.top_food.paginate'));
+        $count = $foods->count();
+
+        return view('layouts.top_food', compact(['paginate',
+            'count',
+        ]));
     }
 }

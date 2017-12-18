@@ -11,7 +11,7 @@
                         <a itemprop="url" href="{{ route('index') }}" ><span itemprop="title">{{ trans('master.home') }}</span></a>						
                         <span><i class="fa fa-circle-o" aria-hidden="true"></i></span>
                     </li>
-                    <li><strong ><span itemprop="title"> {{ trans('master.allTopProduct') }}</span></strong></li>
+                    <li><strong ><span itemprop="title"> {{ trans('master.allProduct') }}</span></strong></li>
                 </ul>
                 @if (session()->has('message'))
                     <div class="alert alert-success">{{ Session::get('message') }}</div>
@@ -26,7 +26,7 @@
             <section class="main_container collection collection_container col-lg-12 col-md-12 col-sm-12">
                 <div class="title_page_cls">
                     <h1 class="title-head-page hidden-xs title_page_cls margin-top-0">
-                        {{ trans('master.allTopProduct') }}
+                        {{ trans('master.allProduct') }}
                     </h1>
                     <div class="text-sm-left count_text">	
                         <span class="count_cls ">({{ trans('master.count') }} <span class="ttt">{{ $count }}</span> {{ trans('master.product') }})</span>
@@ -39,12 +39,7 @@
                                 <div class="text-sm-right">
                                     <div class="sortPagiBar text-sm-right">
                                         <div id="sort-by">
-                                            <label class="left hidden-xs">{{ trans('master.sort') }}: </label>
-                                            <div class="border_sort">
-                                                <select onChange="sortby(this.value)">
-                                                    <option class="valued" value="default">{{ trans('master.default') }}</option>
-                                                </select>
-                                            </div>
+                                            <label class="left hidden-xs"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +53,7 @@
                                     <div class="product-box grid_cls">
                                         <div class="product-thumbnail">
                                             <a class="image_link " href="#" title="{{ $food->name }}">
-                                            <img src="/{{ $food->image }}" alt="{{ $food->name }}">
+                                            <img src="{{ $food->image }}" alt="{{ $food->name }}" style="max-height: 220px;">
                                             </a>
                                             <div class="product-action-grid clearfix">
                                                 <form action="{{ route('addToCart', $food->id) }}" method="post" class="variants form-nut-grid" enctype="multipart/form-data">
@@ -80,7 +75,12 @@
                                                 </span>
                                             </div>
                                             <div class="price-box clearfix">
-                                                <span class="price product-price">{{ $food->price }}{{ trans('master.unit') }}</span>
+                                                <span class="price product-price">{{ \App\Helpers\Helper::showPrice($food) }}{{ trans('master.unit') }}</span>
+                                                @if ($food->discountFood->id != config('customer.product.no_discount')
+                                                        && $food->discountFood->end_date 
+                                                            >= \Illuminate\Support\Carbon::now())                                              
+                                                    <span class="price product-price-old">{{ number_format($food->price) }}{{ trans('master.unit') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

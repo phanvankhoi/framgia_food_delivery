@@ -22,4 +22,29 @@ class OrderController extends Controller
 
         return view('layouts.order', compact(['orders']));
     }
+
+    public function remove($id)
+    {
+        try {
+            if ($orders = Order::find($id)) {
+                $orders->delete();
+
+                return back();
+            } else {
+                session()->flash('error', trans('admin_user.not id'));
+
+                return back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('error', trans('admin_user.add_fail'));
+            return back();
+        }
+    }
+
+    public function show($id)
+    {
+        $order = Order::find($id);
+
+        return view('layouts.order_detail', compact(['order']));
+    }
 }

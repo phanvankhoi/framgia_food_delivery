@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title')</title>
         {{ Html::style('/bower/bootstrap/dist/css/bootstrap.min.css') }}
+        {{ Html::style('/bower/bootstrap-rating/bootstrap-rating.css') }}
         {{ Html::style('/bower/font-awesome/css/font-awesome.min.css') }}
         {{ Html::style('/bower/nprogress/nprogress.css') }}
         {{ Html::style('/bower/iCheck/skins/flat/green.css') }}
@@ -27,7 +28,7 @@
                         <div class="clearfix"></div>
                         <div class="profile clearfix">
                             <div class="profile_pic">
-                                <img src="{{ asset(config('setup.user_avatar').Auth::user()->avatar) }}" alt="..." class="img-circle profile_img">
+                                <img src="{{ asset(Auth::user()->avatar) }}" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
                                 <span>{{ trans('welcome') }},</span>
@@ -83,6 +84,11 @@
                                             <li><a href="{{ route('admin.discount.create') }}">{{ trans('Add Discount') }}</a></li>
                                         </ul>
                                     </li>
+                                    <li><a><i class="fa fa-clone"></i> {{ trans('Review') }} <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ route('admin.review.index') }}">{{ trans('Review') }}</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="menu_section">
@@ -116,42 +122,37 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="{{ asset(config('setup.user_avatar').Auth::user()->avatar) }}" alt="">{{ Auth::user()->name }}
+                                        <img src="{{ asset(Auth::user()->avatar) }}" alt="">{{ Auth::user()->name }}
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                                         <li><a href="{{ route('admin.profile') }}"> {{ trans('Profile') }}</a></li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="badge bg-red pull-right">50%</span>
-                                                <span>{{ trans('Settings') }}</span>
-                                            </a>
-                                        </li>
                                         <li><a href="javascript:;">{{ trans('Help') }}</a></li>
                                         <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out pull-right"></i> {{ trans('Log Out') }}</a></li>
                                     </ul>
                                 </li>
                                 <li role="presentation" class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <a href="{{ route('admin.order.index') }}" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">6</span>
+                                        @if(isset($pendingEventCount))
+                                            <span class="badge bg-green">
+                                                {{ $pendingEventCount }}
+                                            </span>
+                                        @endif
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                         @foreach($orderTime as $item)
                                             <li>
-                                                <a href="{{ route('admin.order.index') }}">
+                                                <a href="{{ route('admin.order.detailOrder', $item->id) }}">
                                                     <span class="image">
-                                                        <img src="{{ asset(config('setup.user_avatar') . $item->user->avatar ) }}">
-                                                    </span>
-                                                    <span>
-                                                        {{ $item->user->name }}
+                                                        <img src="{{ $item->user->avatar }}">
                                                     </span>
                                                     <span>
                                                         {{ $item->user->email }}
-                                                    </span>                             
-                                                    <span class="time">
+                                                    </span>
+                                                    <span class="time message">
                                                         {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
-                                                    </span>                                                  
+                                                    </span>                                            
                                                     <span class="message">
                                                         Have ordered
                                                     </span>
@@ -160,7 +161,7 @@
                                         @endforeach
                                         <li>
                                             <div class="text-center">
-                                                <a href={{ route('admin.order.index') }}>
+                                                <a href="{{ route('admin.order.index') }}">
                                                     <strong>See All Alerts</strong>
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
@@ -184,6 +185,7 @@
             </div>
         </div>
         {{ Html::script('/bower/bower_food_delivery/vendors/jquery/dist/jquery.js') }}
+        {{ Html::script('/bower/bootstrap-rating/bootstrap-rating.js') }}
         {{ Html::script('/bower/bootstrap/dist/js/bootstrap.min.js') }}
         {{ Html::script('/bower/fastclick/lib/fastclick.js') }}
         {{ Html::script('/bower/nprogress/nprogress.js') }}
