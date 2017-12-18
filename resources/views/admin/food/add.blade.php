@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <td>{!! Form::label('image', trans('admin_food.image')) !!}</td>
-                        <td>{!! Form::file('image', $value = '') !!}</td>
+                        <td>{!! Form::file('image') !!}</td>
                     </tr>
                 </table>
             {!! Form::submit(trans('admin_food.add'), ['class' => 'btn btn-success']) !!}

@@ -28,7 +28,7 @@
                         <div class="clearfix"></div>
                         <div class="profile clearfix">
                             <div class="profile_pic">
-                                <img src="{{ asset(config('setup.user_avatar').Auth::user()->avatar) }}" alt="..." class="img-circle profile_img">
+                                <img src="{{ asset(Auth::user()->avatar) }}" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
                                 <span>{{ trans('welcome') }},</span>
@@ -122,7 +122,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="{{ asset(config('setup.user_avatar').Auth::user()->avatar) }}" alt="">{{ Auth::user()->name }}
+                                        <img src="{{ asset(Auth::user()->avatar) }}" alt="">{{ Auth::user()->name }}
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -143,7 +143,7 @@
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                         @foreach($orderTime as $item)
                                             <li>
-                                                <a href="{{ route('admin.order.index') }}">
+                                                <a href="{{ route('admin.order.detailOrder', $item->id) }}">
                                                     <span class="image">
                                                         <img src="{{ $item->user->avatar }}">
                                                     </span>
@@ -161,7 +161,7 @@
                                         @endforeach
                                         <li>
                                             <div class="text-center">
-                                                <a href={{ route('admin.order.index') }}>
+                                                <a href="{{ route('admin.order.index') }}">
                                                     <strong>See All Alerts</strong>
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>

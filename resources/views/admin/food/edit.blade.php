@@ -56,7 +56,7 @@
                 <tr>
                     <td>{!! Form::label('image', trans('admin_food.image')) !!}</td>
                     <td><img src="{{ $foods['image'] }}" width="60" height="60">
-                        {!! Form::file('image', $value = '') !!}</td>
+                        {!! Form::file('image') !!}</td>
                 </tr>
             </table>
             {!! Form::submit(trans('admin_user.update'), ['class' => 'btn btn-success']) !!}

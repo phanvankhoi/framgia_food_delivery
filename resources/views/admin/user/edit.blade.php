@@ -50,7 +50,7 @@
                     
                     <td>{!! Form::label('avatar', trans('admin_user.avatar')) !!}</td>
                     <td><img src="{{$users->avatar}}" width="60" height="60">
-                        {!! Form::file('avatar', $value = '') !!}
+                        {!! Form::file('avatar') !!}
                     </td>
                 </tr>
                 <tr>
