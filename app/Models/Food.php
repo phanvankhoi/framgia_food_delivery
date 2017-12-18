@@ -55,15 +55,15 @@ class Food extends Model
         return $this->belongsTo(Category::Class);
     }
 
-    public function scopeTop($query)
+    public function scopeTop($query, $limit)
     {
         return $query->where('is_top', config('customer.product.is_top'))->inRandomOrder()
-            ->limit(config('customer.product.limit_qty'));
+            ->limit($limit);
     }
 
     public function scopePagination($query, $id)
     {
-        return $query->paginate($id);
+        return $query->where('status', config('customer.product.is_active'))->paginate($id);
     }
 
     public function scopeSearchByName($query, $keyword)
@@ -74,5 +74,10 @@ class Food extends Model
     public function scopeSearchByPrice($query, $keyword)
     {
         return $query->where('price', '<=', $keyword);
+    }
+
+    public function getImageAttribute($image)
+    {
+        return config('customer.link.food') . $image;
     }
 }

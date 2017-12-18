@@ -62,7 +62,7 @@
                     <tr>
 
                         <td>{!! Form::label('avatar', trans('admin_user.avatar')) !!}</td>
-                        <td>{!! Form::file('avatar', $value = '') !!}</td>
+                        <td>{!! Form::file('avatar') !!}</td>
                     </tr>
                     <tr>
                         <td>{!! Form::label('role', trans('admin_user.role')) !!}</td>

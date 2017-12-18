@@ -9,7 +9,7 @@ class MenuComposer
 
 	public function compose(View $view)
 	{	
-		$categories = Category::all();
+		$categories = Category::where('status', config('customer.product.is_active'))->get();
 		$view->with('categories', $categories);
 	}
 }

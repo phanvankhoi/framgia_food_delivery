@@ -17,8 +17,8 @@
                             </ul>
                         </li>
                         <li class="nav-item "><a class="nav-link" href="{{ route('topFood') }}">{{ trans('master.special') }}</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{{ route('discountFood') }}">{{ trans('master.discount') }}</a></li>
                         <li class="nav-item "><a class="nav-link" href="{{ route('contact') }}">{{ trans('master.contact') }}</a></li>
-                        <li class="nav-item nav-items "><a href="/news" class="nav-link">{{ trans('master.news') }}</a></li>
                     </ul>
                     <span class="content_null_right"><span class="content_"></span></span>
                 </div>

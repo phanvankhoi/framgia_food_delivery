@@ -47,7 +47,7 @@
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td><img src="{{ asset(config('setup.user_avatar') . $user['avatar']) }}" width="60" height="60"></td>
+                                        <td><img src="{{ $user['avatar'] }}" width="60" height="60"></td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->address }}</td>
                                         <td>{{ $user->role  }}</td>
@@ -88,5 +88,5 @@
 @endsection
 @push('scripts')
     {{ Html::script('js/admin.js') }}
-    {{ Html::script('js/search-ajax.js') }}
+    {{ Html::script('js/search-user.js') }}
 @endpush

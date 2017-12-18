@@ -16,7 +16,7 @@ return [
     'admin' => 'admin',
     'password' => 'password',
     'confirm password' => 'confirm password',
-    'Add Food' => 'Add ood',
+    'Add Food' => 'Add food',
     'List food' => 'List food',
     'pending' => 'pending',
     'activate' => 'activate',

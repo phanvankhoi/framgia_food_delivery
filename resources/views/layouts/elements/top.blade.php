@@ -20,7 +20,7 @@
                                         <li class="hidden-sm hidden-xs"><a href="{{ route('getLogin') }}"  title="{{ trans('master.login') }}">{{ trans('master.login') }}</a></li>
                                         <li class="hidden-sm hidden-xs"><a href="{{ route('getRegister') }}"  title="{{ trans('master.register') }}">{{ trans('master.register')}}</a></li>
                                     @else
-                                        @if (Auth::user()->role == config('customer.user.default_role'))
+                                        @if (Auth::user()->role != config('customer.user.default_role'))
                                             <li class="hidden-sm hidden-xs"><a href="{{ route('admin.home') }}">{{ trans('master.dashboard') }}</a></li>
                                         @endif                                  
                                         <li class="hidden-sm hidden-xs"><a href="{{ route('showProfile') }}">{{ trans('master.profile') }}</a></li>
@@ -38,7 +38,7 @@
                                         <i class="icon-magnifier icons"></i>
                                         </button>
                                         </span>
-                                        <input type="search" name="query" value="" placeholder="{{ trans('master.search') }} " class="input-group-field st-default-search-input search-text" autocomplete="off" id="search-input">            
+                                        <input type="search" name="query" value="" placeholder="Tìm kiếm theo tên hoặc giá" class="input-group-field st-default-search-input search-text" autocomplete="off" id="search-input">            
                                     </form>
                                 </div>
                             </div>
@@ -68,14 +68,14 @@
                                                                 <span class="quaty item_quanty_count">{{ $item->qty }}</span><a href="{{ route('removeFromCart', $item->rowId) }}" title="{{ trans('master.delete') }}" class="remove-item-cart fa fa-times">&nbsp;</a>
                                                                 <p class="product-name"> <a class="text2line" href="{{ route('food', $item->id) }}" title="{{ $item->name }}">{{ $item->name }}</a></p>
                                                             </div>
-                                                            <div class="product-details-bottom"><span class="price">{{ $item->price }}{{ trans('master.unit') }}</span></div>
+                                                            <div class="product-details-bottom"><span class="price">{{ number_format($item->subtotal) }}{{ trans('master.unit') }}</span></div>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 @endforeach
                                             </ul>
                                             <div class="wrap_total">
-                                                <div class="top-subtotal">{{ trans('master.total') }}: <span class="price">{{ Cart::total() }}{{ trans('master.unit') }}</span></div>
+                                                <div class="top-subtotal">{{ trans('master.total') }}: <span class="price">{{ number_format(Cart::total()) }}{{ trans('master.unit') }}</span></div>
                                             </div>
                                             <div class="wrap_button">
                                                 <div class="actions"><a href="{{ route('cart.index') }}" class="btn btn-gray btn-checkout"><span>{{ trans('master.confirmOrder') }}</span></a></div>

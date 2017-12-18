@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\User;
+use App\Models\Food;
+use App\Models\Review;
 use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +27,36 @@ class AppServiceProvider extends ServiceProvider
             $pendingEventCount = count(Order::where('status', config('setup.pending'))->get());
                 if ($pendingEventCount) {
                     $view->with('pendingEventCount', $pendingEventCount);
+                }
+        });
+
+        view()->composer(['admin.index'], function($view){
+            $userCount = User::count();
+                if ($userCount) {
+                    $view->with('userCount', $userCount);
+                }
+        });
+
+        view()->composer(['admin.index'], function($view){
+            $foodCount = Food::count();
+                if ($foodCount) {
+                    $view->with('foodCount', $foodCount);
+                }
+        });
+
+        view()->composer(['admin.index'], function($view){
+            $orderCount = Carbon::now();
+            $orderCount = Order::count();
+                if ($orderCount) {
+                    $view->with('orderCount', $orderCount);
+                }
+        });
+
+        view()->composer(['admin.index'], function($view){
+            $reviewCount = Carbon::now();
+            $reviewCount = Review::count();
+                if ($reviewCount) {
+                    $view->with('reviewCount', $reviewCount);
                 }
         });    
 

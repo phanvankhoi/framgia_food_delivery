@@ -49,8 +49,8 @@
                 <tr>
                     
                     <td>{!! Form::label('avatar', trans('admin_user.avatar')) !!}</td>
-                    <td><img src="{{asset( $users->avatar)}}" width="60" height="60">
-                        {!! Form::file('avatar', $value = '') !!}
+                    <td><img src="{{$users->avatar}}" width="60" height="60">
+                        {!! Form::file('avatar') !!}
                     </td>
                 </tr>
                 <tr>

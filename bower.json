@@ -36,6 +36,7 @@
     "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.2.1",
     "bootstrap-datepicker": "^1.7.1",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
-    "moment": "^2.19.2"
+    "moment": "^2.19.2",
+    "bootstrap-rating": "^1.4.0"
   }
 }
