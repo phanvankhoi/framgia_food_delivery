@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             'avatar' => '1512582883.jpeg',
             'role' => 'admin',
         ]);
-
         DB::table('users')->insert([
             'name' => 'User',
             'email' => 'user@mail.com',
@@ -26,7 +25,6 @@ class DatabaseSeeder extends Seeder
             'avatar' => '1512582883.jpeg',
             'role' => 'customer',
         ]);
-
         factory(App\Models\Category::class, 6)->create();
         factory(App\Models\DiscountFood::class, 10)->create();
         factory(App\Models\Food::class, 15)->create();
