@@ -9,7 +9,7 @@
                 <div class="home-slider owl-carousel" data-dot="false" data-nav='true' data-lg-items='1' data-md-items='1' data-sm-items='1' data-xs-items="1" data-margin='0'>
                     <div class="item">
                         <a href="#" class="clearfix">
-                        <img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/slider_1.jpg?1509501415605" alt="New Collection">
+                        <img src="{{ asset('images/background.jpg') }}" alt="New Collection" style="height: 472px; width: 1286px;">
                         </a>	
                     </div>
                     <div class="item">
@@ -31,10 +31,10 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="content_wrap">
                             <div class="thumb">
-                                <img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/send.png?1509501415605" alt="Giao hàng 14/24">
+                                <img src="{{ asset('images/send.png') }}" alt="Giao hàng 12/24">
                             </div>
                             <div class="content">
-                                <p class="title_">Giao hàng 14/24</p>
+                                <p class="title_">Giao hàng 12/24</p>
                                 <span class="descript">Những bữa sáng ngon lành để bắt đầu ngày mới</span>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="content_wrap">
                             <div class="thumb">
-                                <img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/women.png?1509501415605" alt="Đặt bàn trực tuyến">
+                                <img src="{{ asset('images/women.png') }}" alt="Đặt bàn trực tuyến">
                             </div>
                             <div class="content">
                                 <p class="title_">Đặt món trực tuyến</p>
@@ -53,7 +53,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="content_wrap">
                             <div class="thumb">
-                                <img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/tag.png?1509501415605" alt="Voucher giảm giá">
+                                <img src="{{ asset('images/tag.png') }}" alt="Voucher giảm giá">
                             </div>
                             <div class="content">
                                 <p class="title_">Giá rẻ bất ngờ</p>
@@ -78,9 +78,9 @@
                                 <h2 class="large_title">Chúng tôi</h2>
                             </div>
                             <div class="des_">
-                                <span>Đón hàng ngàn khách mỗi ngày có lẽ đã đủ để nói lên vị trí của Pasteur trong lòng người Việt và du khách bốn phương. Ai đó đã ví rằng “Nấu ăn là một nghệ thuật, người nấu ăn cũng là một nghệ sĩ”. Người nghệ sĩ tạo nên các món ăn hấp dẫn của Pasteur chẳng phải ai xa lạ, đều là những đầu bếp bình dân điêu luyện</span>
+                                <span>Bep Me Un luôn chào đón quý khách, phục vụ tận tình, món ăn giao tận nhà</span>
                             </div>
-                            <span class="mr_view"><a class="button_more" href="#" title="Xem thêm">Xem thêm</a></span>
+                            <span class="mr_view"><a class="button_more" href="{{ route('category.index') }}" title="Xem thêm">view more</a></span>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -88,14 +88,14 @@
                             <div class="row">
                                 <div class="padding col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="image_list left">
-                                        <span><img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/banner_left_1.png?1509501415605" alt="Pasteur"></span>
-                                        <span><img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/banner_left_2.png?1509501415605" alt="Pasteur"></span>
+                                        <span><img src="{{ asset('images/banner_left_1.png') }}" alt="Utt"></span>
+                                        <span><img src="{{ asset('images/banner_left_1.png') }}" alt="Utt"></span>
                                     </div>
                                 </div>
                                 <div class="padding col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="image_list right">
-                                        <span><img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/banner_right_1.png?1509501415605" alt="Pasteur"></span>
-                                        <span><img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/banner_right_2.png?1509501415605" alt="Pasteur"></span>
+                                        <span><img src="{{ asset('images/banner_right_1.png') }}" alt="Utt"></span>
+                                        <span><img src="{{ asset('images/banner_right_2.png') }}" alt="Utt"></span>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
         <div class="wrap_img">
             <div class="container">
                 <div class="row">
-                    <div class="title_ ab" onclick="window.location.href='https://pasteur.bizwebvietnam.net/san-pham-noi-bat';">
+                    <div class="title_ ab" onclick="window.location.href='https://Utt.bizwebvietnam.net/san-pham-noi-bat';">
                         <span class="mini_title">Món ngon</span>
                         <h2 class="large_title">Nổi bật</h2>
                     </div>
@@ -124,7 +124,7 @@
                                             <div class="product-box">
                                                 <div class="product-thumbnail ">
                                                     <a class="image_link " href="{{ route('food', $top_food->id) }}" title="{{ $top_food->name }}">
-                                                    <img src="{{ $top_food->image }}" alt="{{ $top_food->name }}">
+                                                    <img src="{{ $top_food->image }}" alt="{{ $top_food->name }}" style="max-width: 360px; max-height: 270px">
                                                     </a>
                                                     <div class="product-action-grid clearfix">
                                                         <form action="" method="post" class="variants form-nut-grid" enctype="multipart/form-data">
@@ -229,7 +229,7 @@
             <div class="row">
                 <div class="wrap_module_guest_blog">
                     <div class="col-magrin-bottom col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="wrap_modul_open">
+                        <div class="wrap_modul_open" style="background-color: #20120a">
                             <div class="wrap_border">
                                 <div class="title_open">
                                     <span class="mini_title">Thời gian</span>
@@ -237,41 +237,43 @@
                                 </div>
                                 <div class="time_">
                                     <p>THỨ 2 - THỨ 7</p>
-                                    <span>Từ 7:00 - 11:00 (Bữa sáng)</span>
-                                    <span>11:00 - 23:00 (Bữa tối)</span>
+                                    <span>Từ 8:00 - 12:00 (Sáng)</span>
+                                    <span>Từ 13:00 - 18:00 (Chiều)</span>
+                                    <span>Từ 18:00 - 22:00 (Tối)</span>
                                 </div>
                                 <div class="time_">
-                                    <p>THỨ 7 - Chủ nhật</p>
-                                    <span>Từ 8:00 - 13:00 (Bữa sáng)</span>
-                                    <span>13:00 - 23:00 (Bữa tối)</span>
+                                    <p>Chủ nhật</p>
+                                    <span>Từ 8:00 - 12:00 (Sáng)</span>
+                                    <span>Từ 13:00 - 18:00 (Chiều)</span>
+                                    <span>Từ 18:00 - 20:00 (Tối)</span>
                                 </div>
                                 <div class="phone_">
-                                    <a title ="Liên hệ ngay" href="tel:0912775468">0912775468</a>
+                                    <a title ="Liên hệ ngay" href="tel:01628083267">01628083267</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="title_">
-                            <h2 class="title_lagre"><a href="#" title="Tin tức nhà hàng">Tin tức nhà hàng</a></h2>
+                            <h2 class="title_lagre"><a href="#" title="Tin tức nhà hàng">Tin tức quán</a></h2>
                         </div>
                         <div class="blog_">
                             <div class="wrap_blog">
                                 <article class="blog_item_module">
-                                    <div class="blog_item_thumbnail" onclick="location.href='https://pasteur.bizwebvietnam.net/mach-ban-cach-chon-nuoc-cham-chuan-gu-cho-mon-nhat';">
+                                    <div class="blog_item_thumbnail" onclick="location.href='https://Utt.bizwebvietnam.net/mach-ban-cach-chon-nuoc-cham-chuan-gu-cho-mon-nhat';">
                                         <div class="img1">
-                                            <a href="https://pasteur.bizwebvietnam.net/mach-ban-cach-chon-nuoc-cham-chuan-gu-cho-mon-nhat" title="Mách bạn cách chọn nước chấm chuẩn gu cho món Nhật">
+                                            <a href="#" title="Mách bạn cách chọn nước chấm chuẩn gu cho món Nhật">
                                             <img src="http://bizweb.dktcdn.net/thumb/large/100/244/304/articles/food.jpg?v=1502675599563" alt="Mách bạn cách chọn nước chấm chuẩn gu cho món Nhật">
                                             </a>
                                         </div>
                                     </div>
-                                    <h3 class="blog-item-name"><a class="text1line" title="Mách bạn cách chọn nước chấm chuẩn gu cho món Nhật" href="https://pasteur.bizwebvietnam.net/mach-ban-cach-chon-nuoc-cham-chuan-gu-cho-mon-nhat">Mách bạn cách chọn nước chấm chu...</a></h3>
+                                    <h3 class="blog-item-name"><a class="text1line" title="Mách bạn cách chọn nước chấm chuẩn gu cho món Nhật" href="#">Mách bạn cách chọn nước chấm chu...</a></h3>
                                     <span class="post-time">
                                     14/08/2017
                                     </span>
                                     <p class="blog-item-summary text3line"> Cũng giống như thói quen trong mỗi bữa ăn của người Việt, bát nước chấm cũng không thể nào thiếu trong ẩm thực Nhật Bản. Tuy nhiên, đa dạng hơn...</p>
                                     <div class="ft_blog">
-                                        <a class="more_ a-left" href="https://pasteur.bizwebvietnam.net/mach-ban-cach-chon-nuoc-cham-chuan-gu-cho-mon-nhat" title="Đọc tiếp Mách bạn cách chọn nước chấm chuẩn gu cho món Nhật">Đọc tiếp</a>
+                                        <a class="more_ a-left" href="#" title="Đọc tiếp Mách bạn cách chọn nước chấm chuẩn gu cho món Nhật">Đọc tiếp</a>
                                         <span class="postby_ a-right">Viết bởi: <span class="author">Đào Quý Thương</span></span>
                                     </div>
                                 </article>
@@ -285,46 +287,36 @@
                         <div class="blog_">
                             <div class="wrap_blog blog_videos">
                                 <article class="blog_item_module">
-                                    <div class="blog_item_thumbnail" onclick="location.href='https://pasteur.bizwebvietnam.net/thuyen-sushi-dep-mat-thu-hut-moi-anh-nhin-ngot-ngao-khi-thuong-thuc';">
+                                    <div class="blog_item_thumbnail" onclick="location.href='https://Utt.bizwebvietnam.net/thuyen-sushi-dep-mat-thu-hut-moi-anh-nhin-ngot-ngao-khi-thuong-thuc';">
                                         <div class="img1 _hasvideo">
                                             <span class="play_icon"><i class="fa fa-play"></i></span>
-                                            <a href="https://pasteur.bizwebvietnam.net/thuyen-sushi-dep-mat-thu-hut-moi-anh-nhin-ngot-ngao-khi-thuong-thuc" title="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức">
+                                            <a href="#" title="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức">
                                             <img src="http://bizweb.dktcdn.net/thumb/large/100/244/304/articles/img-3384-tatami-700x400.jpg?v=1502674998133" alt="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức">
                                             </a>
                                         </div>
                                     </div>
-                                    <h3 class="blog-item-name"><a class="text1line" title="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức" href="https://pasteur.bizwebvietnam.net/thuyen-sushi-dep-mat-thu-hut-moi-anh-nhin-ngot-ngao-khi-thuong-thuc">Thuyền sushi đẹp mắt thu hút mọi ánh ...</a></h3>
+                                    <h3 class="blog-item-name"><a class="text1line" title="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức" href="https://Utt.bizwebvietnam.net/thuyen-sushi-dep-mat-thu-hut-moi-anh-nhin-ngot-ngao-khi-thuong-thuc">Thuyền sushi đẹp mắt thu hút mọi ánh ...</a></h3>
                                     <span class="post-time">
                                     14/08/2017
                                     </span>
                                 </article>
                                 <article class="blog_item_module">
-                                    <div class="blog_item_thumbnail" onclick="location.href='https://pasteur.bizwebvietnam.net/com-tam-suon-non-suc-hap-dan-khong-the-choi-tu';">
+                                    <div class="blog_item_thumbnail" onclick="location.href='https://Utt.bizwebvietnam.net/thuyen-sushi-dep-mat-thu-hut-moi-anh-nhin-ngot-ngao-khi-thuong-thuc';">
                                         <div class="img1 _hasvideo">
                                             <span class="play_icon"><i class="fa fa-play"></i></span>
-                                            <a href="https://pasteur.bizwebvietnam.net/com-tam-suon-non-suc-hap-dan-khong-the-choi-tu" title="Cơm tấm sườn non sức hấp dẫn không thể chối từ">
-                                            <img src="http://bizweb.dktcdn.net/thumb/large/100/244/304/articles/cd956b9f815c27ab7720cba5b73a861a.jpg?v=1502512804953" alt="Cơm tấm sườn non sức hấp dẫn không thể chối từ">
+                                            <a href="#" title="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức">
+                                            <img src="http://bizweb.dktcdn.net/thumb/large/100/244/304/articles/img-3384-tatami-700x400.jpg?v=1502674998133" alt="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức">
                                             </a>
                                         </div>
                                     </div>
-                                    <h3 class="blog-item-name"><a class="text1line" title="Cơm tấm sườn non sức hấp dẫn không thể chối từ" href="https://pasteur.bizwebvietnam.net/com-tam-suon-non-suc-hap-dan-khong-the-choi-tu">Cơm tấm sườn non sức hấp dẫn không th...</a></h3>
-                                    <span class="post-time">
-                                    12/08/2017
-                                    </span>
-                                </article>
-                                <article class="blog_item_module">
-                                    <div class="blog_item_thumbnail" onclick="location.href='https://pasteur.bizwebvietnam.net/bun-long-heo-cam-xuc-kho-ta-voi-moi-nguoi-thuong-thuc';">
+                                    <div class="blog_item_thumbnail" onclick="location.href='https://Utt.bizwebvietnam.net/thuyen-sushi-dep-mat-thu-hut-moi-anh-nhin-ngot-ngao-khi-thuong-thuc';">
                                         <div class="img1 _hasvideo">
                                             <span class="play_icon"><i class="fa fa-play"></i></span>
-                                            <a href="https://pasteur.bizwebvietnam.net/bun-long-heo-cam-xuc-kho-ta-voi-moi-nguoi-thuong-thuc" title="Bún lòng heo cảm xúc khó tả với mỗi người thưởng thức">
-                                            <img src="http://bizweb.dktcdn.net/thumb/large/100/244/304/articles/am-thuc-ha-noi-a7.jpg?v=1502512305550" alt="Bún lòng heo cảm xúc khó tả với mỗi người thưởng thức">
+                                            <a href="#" title="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức">
+                                            <img src="http://bizweb.dktcdn.net/thumb/large/100/244/304/articles/img-3384-tatami-700x400.jpg?v=1502674998133" alt="Thuyền sushi đẹp mắt thu hút mọi ánh nhìn ngọt ngào khi thưởng thức">
                                             </a>
                                         </div>
                                     </div>
-                                    <h3 class="blog-item-name"><a class="text1line" title="Bún lòng heo cảm xúc khó tả với mỗi người thưởng thức" href="https://pasteur.bizwebvietnam.net/bun-long-heo-cam-xuc-kho-ta-voi-moi-nguoi-thuong-thuc">Bún lòng heo cảm xúc khó tả với mỗi n...</a></h3>
-                                    <span class="post-time">
-                                    12/08/2017
-                                    </span>
                                 </article>
                             </div>
                             

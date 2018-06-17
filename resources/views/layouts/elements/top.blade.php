@@ -7,8 +7,8 @@
                         <img src='http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/menu-bar.png?1509501415605' alt='menu bar' /> 
                     </div>
                     <div class="logo_top">                              
-                        <a href="{{ route('index') }}" class="logo-wrapper ">                   
-                        <img src="http://bizweb.dktcdn.net/100/244/304/themes/577104/assets/logo.png?1509501415605" alt="logo ">                    
+                        <a href="{{ route('index') }}" class="logo-wrapper">                   
+                        {{-- <img src=" {{ asset('images/bepmeun.png') }}" alt="logo">                --}}
                         </a>                                    
                     </div>
                     <div class="header_top_cart left">
@@ -75,7 +75,7 @@
                                                 @endforeach
                                             </ul>
                                             <div class="wrap_total">
-                                                <div class="top-subtotal">{{ trans('master.total') }}: <span class="price">{{ number_format(Cart::total()) }}{{ trans('master.unit') }}</span></div>
+                                                <div class="top-subtotal">{{ trans('master.total') }}: <span class="price">{{ Cart::total() }}{{ trans('master.unit') }}</span></div>
                                             </div>
                                             <div class="wrap_button">
                                                 <div class="actions"><a href="{{ route('cart.index') }}" class="btn btn-gray btn-checkout"><span>{{ trans('master.confirmOrder') }}</span></a></div>

@@ -45,7 +45,7 @@ class Address extends \Faker\Provider\Address
         "Muwardi", "Nakula", "Nanas", "Nangka", "Orang",
         "Otista", "Otto", "PHH. Mustofa", "Pacuan Kuda", "Padang",
         "Padma", "Pahlawan", "Panjaitan", "Pasir Koja", "Pasirkoja",
-        "Pasteur", "Pattimura", "Pelajar Pejuang 45", "Perintis Kemerdekaan", "Peta",
+        "Utt", "Pattimura", "Pelajar Pejuang 45", "Perintis Kemerdekaan", "Peta",
         "Qrisdoren", "R.E. Martadinata", "R.M. Said", "Raden", "Raden Saleh",
         "Radio", "Rajawali", "Rajawali Barat", "Rajawali Timur", "Rajiman",
         "Raya Setiabudhi", "Raya Ujungberung", "Reksoninten", "Ronggowarsito",

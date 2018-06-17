@@ -6,11 +6,10 @@
                     <div class="col-xs-12 col-lg-3 col-md-3 col-sm-5 col-xs-12">
                         <div class="footer-widget">
                             <h4 class="cliked"><span>{{ trans('master.instruction') }}</span></h4>
-                            <ul class="list-menu toggle-mn" style="display:none;">
-                                <li class="li_effect"><i class="fa fa-angle-right"></i><a href="https://pasteur.bizwebvietnam.net/huong-dan-dat-ban"></a></li>
-                                <li class="li_effect"><i class="fa fa-angle-right"></i><a href="https://pasteur.bizwebvietnam.net/huong-dan-thanh-toan"></a></li>
-                                <li class="li_effect"><i class="fa fa-angle-right"></i><a href="https://pasteur.bizwebvietnam.net/dang-ky-thanh-vien"></a></li>
-                                <li class="li_effect"><i class="fa fa-angle-right"></i><a href="https://pasteur.bizwebvietnam.net/giao-nhan-va-thanh-toan"></a></li>
+                            <ul class="list-menu toggle-mn">
+                                <li class="li_effect"><i class="fa fa-angle-right"></i><a href="#">huong dan dat hang</a></li>
+                                <li class="li_effect"><i class="fa fa-angle-right"></i><a href="#">dang ky thanh vien</a></li>
+                                <li class="li_effect"><i class="fa fa-angle-right"></i><a href="#">giao nhan va thanh toan</a></li>
                             </ul>
                         </div>
                     </div>
@@ -25,13 +24,13 @@
                             </form>
                             <ul class="follow_option">
                                 <li>
-                                    <a class="fb" href="#" title="Theo dõi Facebook Pasteur"><i class="fa fa-facebook"></i></a>
+                                    <a class="fb" href="#" title="Theo dõi Facebook Bếp mẹ ủn"><i class="fa fa-facebook"></i></a>
                                 </li>
                                 <li>
-                                    <a class="twitter" href="#" title="Theo dõi Twitter Pasteur"><i class="fa fa-twitter"></i></a>
+                                    <a class="twitter" href="#" title="Theo dõi Twitter Bếp mẹ ủn"><i class="fa fa-twitter"></i></a>
                                 </li>
                                 <li>
-                                    <a class="goplus" href="#" title="Theo dõi Google Plus Pasteur"><i class="fa fa-google-plus"></i></a>
+                                    <a class="goplus" href="#" title="Theo dõi Google Plus Bếp mẹ ủn"><i class="fa fa-google-plus"></i></a>
                                 </li>
                             </ul>
                         </div>

@@ -155,7 +155,7 @@
                                                     <div id="bizweb-review-11869" class="bizweb-review" itemscope="" itemtype="http://data-vocabulary.org/Review">
                                                         <div class="bizweb-review-header">
                                                             <div>
-                                                                <div class="bizweb-review-header-img"><img src="{{ $review->user->avatar }}"></div>
+                                                                <div class="bizweb-review-header-img" style="padding: 0px !important"><img src="{{ $review->user->avatar }}" class="img-circle" style="width: 35px; height: 34px; padding: 0px !important;"></div>
                                                             </div>
                                                             <div>
                                                                 <span class="bizweb-review-header-byline">{{ $review->user->email }}</span>
@@ -185,7 +185,7 @@
                                                             @endif
                                                         </div>
                                                         <div class="bizweb-review-content">
-                                                            <p class="bizweb-review-content-body">{{ $review->content }}</p>
+                                                            <p style="padding-left: 40px;" class="bizweb-review-content-body">{{ $review->content }}</p>
                                                         </div>
                                                     </div>
                                                 </div>

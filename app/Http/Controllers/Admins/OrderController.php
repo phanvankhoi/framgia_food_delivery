@@ -84,7 +84,6 @@ class OrderController extends Controller
                 if($request->status == 1) {
                     Mail::to($orders->user)->send(new OrderConfirmed($orders));
                 }
-
                 return redirect()->route('admin.order.index', [$id])->with('message', trans('admin_order.update success'));     
             } else {
                 return redirect()->route('admin.order.index', [$id])->with('message', trans('admin_order.update failed'));

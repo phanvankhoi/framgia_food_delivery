@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon" />
         <title>@yield('title')</title>
         {{ Html::style('/bower/bootstrap/dist/css/bootstrap.min.css') }}
         {{ Html::style('/bower/bootstrap-rating/bootstrap-rating.css') }}
@@ -23,7 +24,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title">
-                            <a href="{{ route('admin.home') }}" class="site_title"><i class="fa fa-paw"></i><span>Framgia Food Delivery</span></a>
+                            <a href="{{ route('admin.home') }}" class="site_title"><i class="fa fa-paw"></i><span>Bep Me Un</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <div class="profile clearfix">

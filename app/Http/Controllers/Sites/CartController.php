@@ -11,6 +11,7 @@ use App\Models\Food;
 use App\Models\Order;
 use App\Models\FoodOrder;
 use App\Http\Requests\OrderForm;
+use Carbon\Carbon;
 use Cart;
 
 class CartController extends Controller
@@ -128,7 +129,7 @@ class CartController extends Controller
         $order->user_id = $user->id;
         $order->description = isset($request->description) ? $request->description : '';
         $order->date = date('Y-m-d H:i:s');
-        $order->total_price = Cart::total();
+        $order->total_price = str_replace(',', '', (Cart::total()));
         $order->status = config('customer.order.default_status');
         $check_order = $order->save();
         if(!$check_order) {

@@ -93,7 +93,7 @@
                                     <div class="wrap_checkprice">
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.total') }}:</span>
-                                            <span class="li-right totals_price price">{{ number_format($total) }}{{ trans('master.unit') }}</span>
+                                            <span class="li-right totals_price price">{{ $total }}{{ trans('master.unit') }}</span>
                                         </div>
                                         <div class="li_table">
                                             <span class="li-left">{{ trans('master.email') }}</span>

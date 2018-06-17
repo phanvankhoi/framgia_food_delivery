@@ -53,7 +53,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="btn_bottom">
+                        <div class="btn_bottom" style="background-color: #fcc630">
                             <a href="{{ route('order') }}" title="{{ trans('master.back') }}"><span>{{ trans('master.back') }}</span></a>
                         </div>
                     </div>

@@ -51,18 +51,27 @@
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->address }}</td>
                                         <td>{{ $user->role  }}</td>
-                                        <td>
-                                            {!! Form::open([
-                                                'route' => ['admin.user.edit', $user['id']], 
-                                                'method' => 'get', 
-                                                'id' => 'form-edit'
-                                            ]) !!}
-                                            {!! Form::button('Edit', [
-                                                'type'=>'submit',
-                                                'class' => 'btn btn-warning fa fa-edit'
-                                            ]) !!}
-                                            {!! Form::close() !!}
-                                        </td>
+                                        @if ($user->role === 'admin')
+                                            <td>
+                                                {!! Form::open([
+                                                    'route' => ['admin.user.edit', $user['id']], 
+                                                    'method' => 'get', 
+                                                    'id' => 'form-edit'
+                                                ]) !!}
+                                                {!! Form::button('Edit', [
+                                                    'type'=>'submit',
+                                                    'class' => 'btn btn-warning fa fa-edit'
+                                                ]) !!}
+                                                {!! Form::close() !!}
+                                            </td>
+                                        @else
+                                            <td>
+                                                {!! Form::button('Edit', [
+                                                    'type'=>'submit',
+                                                    'class' => 'btn btn-warning fa fa-edit disabled'
+                                                ]) !!}
+                                            </td>
+                                        @endif
                                         <td>
                                             {!! Form::open([
                                                 'route' => ['admin.user.destroy', $user['id']], 
@@ -71,7 +80,8 @@
                                             ]) !!}
                                             {!! Form::button('Delete', [
                                                 'type'=>'submit',
-                                                'class' => 'btn btn-danger fa fa-trash'
+                                                'class' => 'btn btn-danger fa fa-trash',
+                                                'id' => 'btn-delete'
                                             ]) !!}
                                             {!! Form::close() !!}
                                         </td>
@@ -89,4 +99,9 @@
 @push('scripts')
     {{ Html::script('js/admin.js') }}
     {{ Html::script('js/search-user.js') }}
+{{--     <script type="text/javascript">
+        $('#btn-delete').click(function () {
+            alert('hello');
+        });
+    </script> --}}
 @endpush
