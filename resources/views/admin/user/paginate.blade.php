@@ -28,7 +28,7 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td><img src="{{ asset(config('setup.user_avatar') . $user['avatar']) }}" width="60" height="60"></td>
+                        <td><img src="{{ $user['avatar']) }}" width="60" height="60"></td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->address }}</td>
                         <td>{{ $user->role  }}</td>

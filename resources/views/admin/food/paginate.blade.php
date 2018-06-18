@@ -31,7 +31,7 @@
                 @foreach($foods as $food)
                     <tr>
                         <td>{{ $food->name }}</td>
-                        <td><img src="{{ asset(config('setup.food_image') . $food['image']) }}" width="60" height="60"></td>
+                        <td><img src="{{ $food['image']) }}" class="img-rounded" alt="none" style="width: 60px; height: 60px;"></td>
                         <td>{{ $food->discountFood->discount }}</td>
                         <td>{{ $food->price }} Vnd</td>
                         <td>{{ $food->status == config('setup.one') ? trans('admin_food.activate') : trans('admin_food.pending') }}</td>

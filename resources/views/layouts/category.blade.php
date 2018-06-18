@@ -62,7 +62,6 @@
                                                 </span>
                                             </div>
                                             <div class="price-box clearfix">
-                                            {{ dd(number_format($food->price)) }}
                                                 <span class="price product-price">{{ \App\Helpers\Helper::showPrice($food) }}{{ trans('master.unit') }}</span>
                                                 @if ($food->discountFood->id != config('customer.product.no_discount')
                                                         && $food->discountFood->end_date 

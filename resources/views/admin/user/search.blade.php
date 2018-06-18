@@ -3,22 +3,31 @@
         <tr>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td><img src="{{ asset(config('setup.user_avatar') . $user['avatar']) }}" width="60" height="60"></td>
+            <td><img src="{{ $user['avatar'] }}" width="60" height="60"></td>
             <td>{{ $user->phone }}</td>
             <td>{{ $user->address }}</td>
             <td>{{ $user->role  }}</td>
-            <td>
-                {!! Form::open([
-                    'route' => ['admin.user.edit', $user['id']], 
-                    'method' => 'get', 
-                    'id' => 'form-edit'
-                ]) !!}
-                {!! Form::button('Edit', [
-                    'type'=>'submit',
-                    'class' => 'btn btn-warning fa fa-edit'
-                ]) !!}
-                {!! Form::close() !!}
-            </td>
+            @if ($user->role === 'admin')
+                <td>
+                    {!! Form::open([
+                        'route' => ['admin.user.edit', $user['id']], 
+                        'method' => 'get', 
+                        'id' => 'form-edit'
+                    ]) !!}
+                    {!! Form::button('Edit', [
+                        'type'=>'submit',
+                        'class' => 'btn btn-warning fa fa-edit'
+                    ]) !!}
+                    {!! Form::close() !!}
+                </td>
+            @else
+                <td>
+                    {!! Form::button('Edit', [
+                        'type'=>'submit',
+                        'class' => 'btn btn-warning fa fa-edit disabled'
+                    ]) !!}
+                </td>
+            @endif            
             <td>
                 {!! Form::open([
                     'route' => ['admin.user.destroy', $user['id']], 

@@ -29,7 +29,7 @@
                                     @endif    
                                 </ul>
                             </div>
-                            <div class="searching hidden-sm hidden-xs">
+                            <div class="searching">
                                 <div class="header_search search_form ">
                                     <form class="input-group search-bar search_form" action="" method="post" role="search" id="search-form">   
                                         {{ csrf_field() }}   
